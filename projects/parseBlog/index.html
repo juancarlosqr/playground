@@ -1,0 +1,154 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse Blog</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.2/handlebars.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+
+    <h1>My Parse Blog</h1>
+
+    <!-- <p>Read the documentation and start building your JavaScript app:</p>
+
+    <ul>
+      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
+      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
+    </ul> -->
+
+    <button id="new">New Post</button>
+
+    <div style="display:none" class="form">
+      <p>Enter your post content:</p>
+      <label for="title">Title</label><br />
+      <input type="text" id="title" style="width:100%;" /><br /><br />
+      <label for="content">Content</label><br />
+      <textarea id="content" rows="5" style="width:100%;"></textarea><br /><br />
+      <button id="save">Save</button>
+    </div>
+
+    <div style="display:none" class="error">
+      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
+    </div>
+
+    <div style="display:none" class="success">
+      <p>You have just created your post!</p>
+    </div>
+
+    <div style="height:15px;"></div>
+    <div id="blog"></div>
+  </div>
+
+<script id="blog-template" type="text/x-handlebars-template">
+{{#each posts}}
+  <div>
+    <h3>{{title}}</h3>
+    <small>{{createdAt}}</small>
+    <p>{{content}}</p>
+  </div>
+{{/each}}
+</script>
+
+  <script type="text/javascript">
+
+    Parse.initialize("sI8Imxy9NZCFvh1MgEERnBgwI3KXE1o6zeetMPjF", "6fPq6aljh0q50VgjVKNc2FqSez669mfDkDbGF8NM");
+
+    function renderResults (data)
+    {
+      var source   = $("#blog-template").html();
+      var template = Handlebars.compile(source);
+      $("#blog").html(template({posts:data}));
+    }
+
+    function refreshBlog()
+    {
+      var data = [];
+
+      var query = new Parse.Query("Post");
+
+      query.descending("createdAt");
+
+      query.find({
+        success: function(results) {
+
+          $("#blog").html(results.length);
+
+          // results is an array of Parse.Object.
+          $.each(results,function (index,value)
+          {
+            data.push(
+              {
+                title:value.attributes.title,
+                content:value.attributes.content,
+                createdAt:value.createdAt
+              });
+          });
+
+          $(".form").slideUp();
+          $("#new").text("New Post");
+          $("#title").val("");
+          $("#content").val("");
+
+          renderResults(data);
+        },
+
+        error: function(error) {
+          // error is an instance of Parse.Error.
+          data.push({title:"Se ha generado un error",content:""});
+          renderResults(data);
+        }
+      });
+
+    }
+
+
+    $("#save").on("click",function ()
+    {
+      var Post = Parse.Object.extend("Post");
+      var myPost = new Post();
+      var myTitle = $("#title").val();
+      var myContent = $("#content").val();
+      var params = {title:myTitle,content:myContent};
+
+      myPost.save(params, {
+        success: function(object) {
+          $(".success").show();
+          $(".form").hide();
+          refreshBlog();
+        },
+        error: function(model, error) {
+          $(".error").show();
+        }
+      });
+    });
+
+
+    $("#new").on("click",function ()
+    {
+      var $this = $(this);
+      var text = $this.text();
+
+      if (text === "New Post")
+        $this.text("Cancel");
+      else
+        $this.text("New Post");
+
+      $(".form").slideToggle();
+
+    });
+
+    refreshBlog();
+
+  </script>
+</body>
+
+</html>

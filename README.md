@@ -1,4 +1,4 @@
-playground
+Playground
 ==========
 
 For testing new things only
