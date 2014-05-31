@@ -1,0 +1,120 @@
+========================================================================
+linux cheat sheet
+========================================================================
+------------------------------------------------------------------------
+apache
+
+/etc/init.d/apache2 start
+/etc/init.d/apache2 restart
+/etc/init.d/apache2 stop
+http://phptechnologytutorials.wordpress.com/2013/04/27/operate-xampp-in-ubuntu-using-command-line/
+
+------------------------------------------------------------------------
+xampp
+
+sudo chmod 755 xampp-linux-1.8.2-2-installer.run 
+
+sudo ./xampp-linux-1.8.2-2-installer.run
+
+/opt/lampp/lampp start
+/opt/lampp/bin/mysql
+/opt/lampp/etc/http.conf
+/opt/lampp/etc/extra/httpd-vhosts.conf
+/etc/hosts
+
+------------------------------------------------------------------------
+mysql
+
+# connect
+mysql -u root -p
+
+# import
+mysql -u root -p "database" > script.sql
+
+#create db
+create database "database"
+
+# create user
+
+# grant privileges
+
+# set root password
+# In the MySQL console set a new password
+mysqladmin -u root password 'your_password'
+set auth value to 'cookie' in config.inc.php
+
+------------------------------------------------------------------------
+ssh
+
+# generate keys
+ssh-keygen -t rsa -C "jcquintero.ce@gmail.com"
+
+# copy public key
+cat ~/.ssh/key.pub | pbcopy
+
+# testing ssh
+ssh -T git@github.com
+ssh -T git@bitbucket.org
+
+------------------------------------------------------------------------
+git
+
+# installing git
+apt-get install git
+apt-get install git-core
+
+# set your username
+git config --global user.name "Juan Carlos Quintero"
+
+# set your email address
+git config --global user.email "jcquintero@gmail.com"
+
+git config --global push.default current
+
+git init
+git remote add origin <url>
+git clone <url>
+git checkout <branch>
+git branch
+git merge <branch>
+git pull origin <branch>
+git push origin <branch>
+
+git reset --hard <commit>
+
+git stash
+git stash list
+git stash apply
+git stash clear
+
+------------------------------------------------------------------------
+oh-my-szh
+
+# update
+apt-get update
+
+# install zsh
+apt-get install zsh
+
+# get oh-my-szh
+wget --no-check-certificate https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+# set zsh default
+chsh -s /bin/zsh
+chsh -s `which zsh`
+
+# set theme
+nano .zshrc
+pygmalion
+bira
+
+------------------------------------------------------------------------
+wget
+
+wget --no-parent -r -p -U Mozilla http://wp-desk.com/lovinflat/
+
+------------------------------------------------------------------------
+
+

@@ -1,0 +1,63 @@
+*****************************************************************
+*	workflow correcto para trabajar con BRANCH en Mercurial		*
+*****************************************************************
+
+---clonamos
+hg clone ...
+
+---creamos branch
+hg branch jcq/actualizacion1
+	
+	---en el nuevo branch lo primero que hacemos es push el nuevo branch
+	hg push --new-branch
+
+	* trabajar sobre este branch
+
+	---al finalizar algun cambio hacemos commit y push
+	hg ci -m'msg'
+	hg push
+
+	---al finalizar todos los cambios, cerramos branch
+	hg ci --close-branch -m'msg'
+
+---regresamos al default branch
+hg up default
+
+---traemos los cambios del branch con merge
+hg merge jcq/actualizacion1
+
+--commit del merge
+hg ci -m'msg'
+
+--hacemos push al servidor
+hg push
+
+*****************************************************************
+
+
+
+https://confluence.atlassian.com/display/BITBUCKET/Branching+a+Repository
+Branch a Mercurial repo
+
+	Create a new feature branch in the repository.
+hg branch feature
+	Update the working copy to the tip of the feature branch.
+hg update feature
+	Edit files, add files, etc, in the working copy.
+	When you have finished working with the branch, you can merge it back to the main repository. First switch back to the default repository.
+hg update default
+	Merge the feature branch.
+hg merge feature
+	Commit the changes to the repository.
+hg commit
+	Push to Bitbucket.
+hg push
+
+	close branch
+hg up -C feature
+hg commit --close-branch -m 'close feature branch, this approach never worked'
+	back to default branch
+hg up -C default
+
+-- otros comandos --
+hg pull

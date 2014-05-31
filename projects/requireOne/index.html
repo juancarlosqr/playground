@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Project</title>
+        <script data-main="js/main" src="js/require.js"></script>
+    </head>
+    <body>
+	    <div id="wrapper">
+	        <h1>My RequireJs Project</h1>
+	    </div>
+    </body>
+    <script id="entry-template" type="text/x-handlebars-template">
+	    <h3>{{{title}}}</h3>
+	    <ul>
+	    {{#each dep}}
+	    	<li>{{this}}.js</li>
+	    {{/each}}
+	    </ul>
+	</script>
+</html>

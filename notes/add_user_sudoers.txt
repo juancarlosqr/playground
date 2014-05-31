@@ -1,0 +1,14 @@
+ su -
+
+ nano /etc/sudoers
+
+ ...luego de la linea
+ root    ALL=(ALL) ALL
+ 
+ ...agregar
+ username    ALL=(ALL) ALL
+ 
+ guardar y cerrar
+ 
+ # fuente :
+ http://www.openredes.com/2011/08/06/error-user-is-not-in-the-sudoers-file-this-incident-will-be-reported/

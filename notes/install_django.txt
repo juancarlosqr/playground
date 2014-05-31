@@ -1,0 +1,6 @@
+$ curl -O https://raw.github.com/pypa/virtualenv/master/virtualenv.py
+$ python virtualenv.py dev_env
+$ . dev_env/bin/activate
+(dev_env)$ pip install django
+(dev_env)$ django-admin.py startproject mysite
+(dev_env)$ python manage.py runserver 192.168.1.100:8080

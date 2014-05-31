@@ -1,0 +1,36 @@
+Attribute Function Reference
+============================
+Operation 				Description
+
+.get(<attribute name>) 	Returns the value of the attribute with the given name. If no such attribute exists,
+                      	undefined is returned.
+
+.set(<attribute name>, 	Sets the value of the given attribute to the value provided in the second parameter.
+<attribute value> 		If the attribute doesn’t already exist, a new attribute is created with this value.
+
+.has(<attribute name>) 	Checks for the existence of the given attribute in the model object.
+
+unset(<attribute name>) Removes an attribute from the model, if it exists.
+
+clear() 				Removes all attributes from the model object.
+
+.attributes 			Returns a JSON representation of all attributes in the model.
+
+.clone() 				Creates a new instance of the model with all the same attributes.
+
+
+Attribute Changes Reference
+===========================
+Operation 						Description
+
+.on('change', <function>) 		Provides a global change handler that responds to any attribute changing in
+                         		the model
+
+.on('change:<attribute name>', 	Listens for changes on a particular attribute
+<function>) 
+
+.hasChanged(<attribute name> 	Returns true if the attribute has changed since the last change event
+
+.previous(<attribute name>) 	Returns the previous value of a particular attribute
+
+.changed 						Returns a complete set of all the changed attributes in the model
