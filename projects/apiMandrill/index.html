@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    	<meta charset="utf-8">
     	<title>Send a Text Email via Mandrill</title>
     </head>
     <body>
@@ -56,7 +57,60 @@
 		$("#send").on("click",function (e) {
 			e.preventDefault();
 			sendTheMail();
-		})
+		});
+
+		console.log("literal"); // -> Oscar
+		
+		var card = {
+		    name: 'Oscar'
+		};
+
+		var card2 = Object.create(Object.prototype, {
+		    bar: {
+		        name: 'Oscar'
+		} });
+
+		console.log(card.name); // -> Oscar
+		console.log(card2.bar); // -> Oscar
+
+		console.log("new"); // -> Oscar
+		
+		var Person = function (name) {
+		    this.name = name || '';
+		    this.last = '';
+		    this.full = function(){
+		    	return this.name + ' ' + this.last;
+		    };
+		};
+		 
+		var sinNombre = new Person();
+		var oscar = new Person('Oscar');
+		// console.log(sinNombre.name); // -> Oscar
+		console.log(oscar.name); // -> Oscar
+		oscar.last = 'Grecco';
+		console.log(oscar.full()); // -> Oscar
+
+
+
+		console.log("create"); // -> Oscar
+
+		var Person = {
+		    introduce: function(age) {
+		        console.log( 'Hola, mi nombre es ' + this.name + ' ' + this.last + ' y tengo ' + age + ' años de edad');
+		    }
+		};
+		 
+		var oscar = Object.create(Person, {
+		    'name': {
+		      value: 'Oscar'
+		    },
+		    'last': {
+		      value: 'Grecco'
+		    }
+		});
+		 
+		oscar.introduce(26);
+
         </script>
     </body>
 </html>

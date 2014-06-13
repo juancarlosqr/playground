@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Brasil 2014 Admin</title>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+    <h1>Brasil 2014!</h1>
+
+    <div style="display:none" class="error">
+      Se ha generado un error
+    </div>
+
+    <div style="display:none" class="success">
+      <code id="log"></code>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+    /*
+    Equipo
+    Jugador
+    Federacion
+    Torneo
+    Edicion
+    Partido
+    */
+    Parse.initialize("sdk", "js");
+    
+    var Equipo = Parse.Object.extend("Equipo");
+    var Jugador = Parse.Object.extend("Jugador");
+
+    var app = 
+    {
+      getJugadores: function(equipo)
+      {
+        var query = new Parse.Query(Jugador);
+
+        query.equalTo("equipo", equipo);
+
+        query.find({
+          success: function(jugadores) {
+            // comments now contains the comments for myPost
+            console.log("2",jugadores);
+            return jugadores;
+          }
+        });
+
+      }
+    }
+
+    var elsuccess = $(".success");
+    var elerror = $(".error");
+    var ellog = $("#log");
+    var nombre = "";
+
+    
+    // A Collection containing all instances of TestObject.
+    var Selecciones = Parse.Collection.extend({
+      model: Equipo
+    });
+
+    var selecciones = new Selecciones();
+    selecciones.fetch({
+      success: function(selecciones) {
+        elsuccess.show();
+
+        selecciones.each(function(seleccion) {
+          console.log("1",seleccion);
+          elsuccess.append(seleccion.get("nombre") + " " + seleccion.id + "</br>");
+          var jugadores = app.getJugadores(seleccion);
+          console.log("3",jugadores);
+        });
+      },
+      error: function(selecciones, error) {
+        // The collection could not be retrieved.
+        elerror.show();
+        elerror.append("Se ha generado un error");
+      }
+    });
+
+
+  </script>
+</body>
+
+</html>

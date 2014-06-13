@@ -54,13 +54,51 @@
     <h3>{{title}}</h3>
     <small>{{createdAt}}</small>
     <p>{{content}}</p>
+    <div class="comments" style="padding-left:15px;">
+        {{#each comments}}
+          <small>Comment by {{name}}</small>
+          <div>{{comment}}</div>
+        {{/each}}
+    </div>
+    <div>
+      <button class="addComment">Add Comment</button>
+      <form style="display:none" class="formComment">
+        <input type="hidden" name="post_id" value="{{post_id}}">
+        <p>Enter your comment:</p>
+        <label for="commentName">Name</label><br />
+        <input type="text" name="commentName" style="width:100%;" /><br /><br />
+        <label for="comment">Comment</label><br />
+        <textarea name="comment" rows="5" style="width:100%;"></textarea><br /><br />
+        <button class="saveComment">Save</button>
+      </form>
+    </div>
   </div>
 {{/each}}
 </script>
 
+
+
+
   <script type="text/javascript">
 
-    Parse.initialize("SDK_API_KEY", "JS_API_KEY");
+    $.fn.serializeObject = function()
+    {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+    Parse.initialize("sdk", "js");
 
     function renderResults (data)
     {
@@ -69,27 +107,66 @@
       $("#blog").html(template({posts:data}));
     }
 
+    //get comments for each post
+     function getComments(parent){
+        var Comment = Parse.Object.extend("Comment");
+        var comment = new Parse.Query(Comment);
+        comment.equalTo("post_id", parent);
+        var myComments = [];
+
+        comment.find({
+            success: function(comments) {
+              for(var key in comments)
+              {
+                  myComments.push(
+                    {
+                      name:comments[key].attributes.name,
+                      comment:comments[key].attributes.comment
+                    });
+              }
+              return myComments;
+            },
+
+            error: function(error) {
+              // error is an instance of Parse.Error.
+              myComments.push({comment:"Se ha generado un error para comentarios",name:""});
+              return myComments;
+            }
+        });
+
+    }
+
     function refreshBlog()
     {
       var data = [];
 
       var query = new Parse.Query("Post");
+      var Post = Parse.Object.extend("Post");
+      // var innerQuery = new Parse.Query(Comment);
 
       query.descending("createdAt");
 
       query.find({
         success: function(results) {
+          console.log(results);
 
-          $("#blog").html(results.length);
+          // $("#blog").html(results.length);
 
           // results is an array of Parse.Object.
           $.each(results,function (index,value)
           {
+
+            var singlePost = new Post();
+            singlePost.id = value.objectId;
+            var thecomments = getComments(singlePost);
+
             data.push(
               {
+                post_id:value.objectId,
                 title:value.attributes.title,
                 content:value.attributes.content,
-                createdAt:value.createdAt
+                createdAt:value.createdAt,
+                comments: thecomments
               });
           });
 
@@ -109,6 +186,48 @@
       });
 
     }
+
+    // function createComment()
+    // {
+    $("#blog").on("click",".saveComment", function (e)
+    {
+        e.preventDefault();
+        var formObj = $(this).parent(".formComment").serializeObject();
+        
+        var Post = Parse.Object.extend("Post");
+        var thePost = new Post();
+        thePost.id = formObj.post_id;
+
+        var Comment = Parse.Object.extend("Comment");
+        var myComment = new Comment();
+        myComment.set("post_id", thePost);
+        myComment.set("name", formObj.commentName);
+        myComment.set("comment", formObj.comment);
+        myComment.save(null, {
+          success: function(object) {
+            refreshBlog();
+          },
+          error: function(model, error) {
+            $(".error").show();
+          }
+        });
+    });
+
+    //   var myName = $("#title").val();
+    //   var myContent = $("#content").val();
+    //   var params = {title:myTitle,content:myContent};
+
+    //   myPost.save(params, {
+    //     success: function(object) {
+    //       $(".success").show();
+    //       $(".form").hide();
+    //       refreshBlog();
+    //     },
+    //     error: function(model, error) {
+    //       $(".error").show();
+    //     }
+    //   });
+    // }
 
 
     $("#save").on("click",function ()
@@ -131,6 +250,10 @@
       });
     });
 
+
+    $("#blog").on("click",".addComment", function (){
+      $(this).next().slideToggle();
+    });
 
     $("#new").on("click",function ()
     {

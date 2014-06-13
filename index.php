@@ -3,7 +3,7 @@
 	$folders = scandir($path);
 	$html = '';
 	for ( $i = 2 ; $i < count($folders) ; $i++ ){
-		if ( $folders[$i] !== 'index.php' )
+		if ( $folders[$i] !== 'index.php' && $folders[$i] !== '.DS_Store' )
 			$html .= '<a href="' . $path . $folders[$i] . '/" class="project">'. $folders[$i] .'</a>';
 	}
 ?>

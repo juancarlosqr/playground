@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<!-- DataTables CSS -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
+</head>
+<body>
+	<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <!-- <th>Start date</th> -->
+                <!-- <th>Salary</th> -->
+                <!-- <th class="type">Type</th> -->
+            </tr>
+        </thead>
+    </table>
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+<script type="text/javascript">
+	(function($){
+
+		/*
+		fuente:
+		https://datatables.net/reference/option/ajax
+		https://datatables.net/reference/api/ajax.reload%28%29
+		https://datatables.net/reference/api/ajax.url%28%29
+		*/
+		var dataObj = [
+		{
+			"name": "Using npm link in Node.js",
+			"author": "Golo Roden",
+			"isbn": "KJ8934YHIYGW",
+			"createdAt": "2014-06-02T15:18:51.830Z",
+			"updatedAt": "2014-06-02T15:18:51.830Z",
+			"id": 1
+		},
+		{
+			"name": "Using npm link in Node.js",
+			"author": "Golo Roden",
+			"isbn": "KJ8934YHIYGW",
+			"createdAt": "2014-06-02T15:18:51.830Z",
+			"updatedAt": "2014-06-02T15:18:51.830Z",
+			"id": 2
+		},
+		{
+			"name": "Using npm link in Node.js",
+			"author": "Golo Roden",
+			"isbn": "KJ8934YHIYGW",
+			"createdAt": "2014-06-02T15:18:51.830Z",
+			"updatedAt": "2014-06-02T15:18:51.830Z",
+			"id": 3
+		},
+		{
+			"name": "Using npm link in Node.js",
+			"author": "Golo Roden",
+			"isbn": "KJ8934YHIYGW",
+			"createdAt": "2014-06-02T15:18:51.830Z",
+			"updatedAt": "2014-06-02T15:18:51.830Z",
+			"id": 4
+		},
+		{
+			"name": "Using npm link in Node.js",
+			"author": "Golo Roden",
+			"isbn": "KJ8934YHIYGW",
+			"createdAt": "2014-06-02T15:18:51.830Z",
+			"updatedAt": "2014-06-02T15:18:51.830Z",
+			"id": 5
+		},
+		{
+			"name": "Using npm link in Node.js",
+			"author": "Golo Roden",
+			"isbn": "KJ8934YHIYGW",
+			"createdAt": "2014-06-02T15:18:51.830Z",
+			"updatedAt": "2014-06-02T15:18:51.830Z",
+			"id": 6
+		}
+		];
+
+		var dtSettings = {
+			time: 5000, // 30 segundos son 30000 
+			options: {
+		        ajax: "data.json"
+			},	
+			options1: {
+				ajax: {
+		        	url: "resultados.json",
+		        	dataSrc: "resultados"
+		        }
+			},
+			options2: {
+				data: dataObj, 
+				columns: [
+		            { "data": "id" },
+		            { "data": "name" },
+		            { "data": "author" },
+		            { "data": "isbn" },
+		            { "data": "createdAt" },
+		            { "data": "updatedAt" }
+		        ]
+			},
+			options3: {
+
+				// serverSide: true,
+		        // ajax: {
+		        //     "url": "http://localhost:1337/books",
+		        //     "dataType": "jsonp"
+		        // }
+
+			}
+	    };
+
+	    var table = $('#example').dataTable( dtSettings.options1 );
+
+	    var reloadSuccess = function(json){
+		    console.log('reloaded successfully!');
+		    console.log(json.data[0]);
+	    };
+
+	    setInterval( function () {
+	    	
+	    	// console.log('Data source: ' + table.ajax.url() );
+	    	// table.ajax = dtSettings.options.ajax.url ;
+	    	// console.log('Data source: ' + table.ajax.url() );
+
+		    // table.ajax.reload( reloadSuccess );
+		}, dtSettings.time );
+
+	})(jQuery);
+</script>
+</body>
+</html>
