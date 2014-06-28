@@ -4,13 +4,8 @@
   <meta charset="utf-8">
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
-
   <title>Brasil 2014 Admin</title>
-
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 </head>
-
 <body>
   
   <div id="main">
@@ -26,240 +21,241 @@
     </div>
   </div>
 
-  <script type="text/javascript">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+<script type="text/javascript">
 
-    /*
-    Equipo
-    Jugador
-    Federacion
-    Torneo
-    Edicion
-    Partido
-    */
+  /*
+  Equipo
+  Jugador
+  Federacion
+  Torneo
+  Edicion
+  Partido
+  */
 
-    var elsuccess = $(".success");
-    var elerror = $(".error");
-    var ellog = $("#log");
-    var nombre = "";
+  var elsuccess = $(".success");
+  var elerror = $(".error");
+  var ellog = $("#log");
+  var nombre = "";
 
-    Parse.initialize("sdk", "js");
-    
-    nombre = "Equipo";
-    var Equipo = Parse.Object.extend(nombre);
-    var objEquipoA = new Equipo();
-    objEquipoA.set("nombre", "Brasil");
-    objEquipoA.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
+  Parse.initialize("sdk", "js");
+  
+  nombre = "Equipo";
+  var Equipo = Parse.Object.extend(nombre);
+  var objEquipoA = new Equipo();
+  objEquipoA.set("nombre", "Brasil");
+  objEquipoA.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
+  var objEquipoB = new Equipo();
+  objEquipoB.set("nombre", "Croacia");
+  objEquipoB.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
+
+  nombre = "Jugador";
+  var Jugador = Parse.Object.extend(nombre);
+
+  var objJugador2 = new Jugador();
+  objJugador2.set(
+    {
+      "nombre":"Luka",
+      "apellido":"Modric",
+      "posicion":"Mediocampo",
+      "equipo":objEquipoB
     });
-    var objEquipoB = new Equipo();
-    objEquipoB.set("nombre", "Croacia");
-    objEquipoB.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
+  objJugador2.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
+  
+  var objJugador1 = new Jugador();
+  objJugador1.set(
+    {
+      "nombre":"Marcelo",
+      "apellido":"",
+      "posicion":"Defensa",
+      "equipo":objEquipoA
     });
+  objJugador1.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
 
-    nombre = "Jugador";
-    var Jugador = Parse.Object.extend(nombre);
+  
 
-    var objJugador2 = new Jugador();
-    objJugador2.set(
-      {
-        "nombre":"Luka",
-        "apellido":"Modric",
-        "posicion":"Mediocampo",
-        "equipo":objEquipoB
+
+  nombre = "Federacion";
+  var Federacion = Parse.Object.extend(nombre);
+  var objFederacion = new Federacion();
+  objFederacion.set(
+    {
+      "nombre":"Federación Internacional de Fútbol Asociación",
+      "siglas":"FIFA",
+      "padre":null
+    });
+  objFederacion.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
+  
+
+  nombre = "Torneo";
+  var Torneo = Parse.Object.extend(nombre);
+  var objTorneo = new Torneo();
+  objTorneo.set(
+    {
+      "nombre":"Copa Mundial de Fútbol",
+      "organizador":objFederacion
+    });
+  objTorneo.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
+
+
+
+  nombre = "Edicion";
+  var Edicion = Parse.Object.extend(nombre);
+  var objEdicion = new Edicion();
+  objEdicion.set(
+    {
+      "nombre":"Brasil 2014",
+      "nro":"XX",
+      "anio":"2014",
+      "pais":"Brasil",
+      "torneo":objTorneo
+    });
+  
+
+  objEdicion.save(null, {
+    success: function(object) {
+
+      var participante = new Parse.Relation(objEdicion, "Participante");
+      participante.add(objEquipoA);
+      participante.add(objEquipoB);
+      objEdicion.save(null, {
+        success: function(object) {
+          elsuccess.show();
+          ellog.append("El Objeto " + nombre +  " guardado<br/>");
+        },
+        error: function(model, error) {
+          elerror.show();
+        }
       });
-    objJugador2.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
+      
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
+
+
+  /*
+  nombre = "Participacion";
+  var Participacion = Parse.Object.extend(nombre);
+  var objParticipacion1 = new Participacion();
+  objParticipacion1.set(
+    {
+      "edicion":objEdicion,
+      "equipo":objEquipoA
     });
-    
-    var objJugador1 = new Jugador();
-    objJugador1.set(
-      {
-        "nombre":"Marcelo",
-        "apellido":"",
-        "posicion":"Defensa",
-        "equipo":objEquipoA
-      });
-    objJugador1.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
+  objParticipacion1.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
+  var objParticipacion2 = new Participacion();
+  objParticipacion2.set(
+    {
+      "edicion":objEdicion,
+      "equipo":objEquipoB
     });
+  objParticipacion2.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
+  */
 
-    
 
+  var fecha = "";
 
-    nombre = "Federacion";
-    var Federacion = Parse.Object.extend(nombre);
-    var objFederacion = new Federacion();
-    objFederacion.set(
-      {
-        "nombre":"Federación Internacional de Fútbol Asociación",
-        "siglas":"FIFA",
-        "padre":null
-      });
-    objFederacion.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
+  nombre = "Partido";
+  var Partido = Parse.Object.extend(nombre);
+  var objPartido1 = new Partido();
+  fecha = new Date(2014,5,12,14,30,0);
+  objPartido1.set(
+    {
+      "edicion":objEdicion,
+      "equipoA":objEquipoA,
+      "equipoB":objEquipoB,
+      "fecha":fecha,
+      "golesA":"-",
+      "golesB":"-"
     });
-    
+  objPartido1.save(null, {
+    success: function(object) {
+      elsuccess.show();
+      ellog.append("El Objeto " + nombre +  " guardado<br/>");
+    },
+    error: function(model, error) {
+      elerror.show();
+    }
+  });
 
-    nombre = "Torneo";
-    var Torneo = Parse.Object.extend(nombre);
-    var objTorneo = new Torneo();
-    objTorneo.set(
-      {
-        "nombre":"Copa Mundial de Fútbol",
-        "organizador":objFederacion
-      });
-    objTorneo.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
-    });
+  
+  
+  // var TestObject = Parse.Object.extend("Jugador");
+  // var TestObject = Parse.Object.extend("Jugador");
+  // var TestObject = Parse.Object.extend("Jugador");
+  // var TestObject = Parse.Object.extend("Jugador");
+  // var TestObject = Parse.Object.extend("Jugador");
 
 
-
-    nombre = "Edicion";
-    var Edicion = Parse.Object.extend(nombre);
-    var objEdicion = new Edicion();
-    objEdicion.set(
-      {
-        "nombre":"Brasil 2014",
-        "nro":"XX",
-        "anio":"2014",
-        "pais":"Brasil",
-        "torneo":objTorneo
-      });
-    
-
-    objEdicion.save(null, {
-      success: function(object) {
-
-        var participante = new Parse.Relation(objEdicion, "Participante");
-        participante.add(objEquipoA);
-        participante.add(objEquipoB);
-        objEdicion.save(null, {
-          success: function(object) {
-            elsuccess.show();
-            ellog.append("El Objeto " + nombre +  " guardado<br/>");
-          },
-          error: function(model, error) {
-            elerror.show();
-          }
-        });
-        
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
-    });
-
-
-    /*
-    nombre = "Participacion";
-    var Participacion = Parse.Object.extend(nombre);
-    var objParticipacion1 = new Participacion();
-    objParticipacion1.set(
-      {
-        "edicion":objEdicion,
-        "equipo":objEquipoA
-      });
-    objParticipacion1.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
-    });
-    var objParticipacion2 = new Participacion();
-    objParticipacion2.set(
-      {
-        "edicion":objEdicion,
-        "equipo":objEquipoB
-      });
-    objParticipacion2.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
-    });
-    */
-
-
-    var fecha = "";
-
-    nombre = "Partido";
-    var Partido = Parse.Object.extend(nombre);
-    var objPartido1 = new Partido();
-    fecha = new Date(2014,5,12,14,30,0);
-    objPartido1.set(
-      {
-        "edicion":objEdicion,
-        "equipoA":objEquipoA,
-        "equipoB":objEquipoB,
-        "fecha":fecha,
-        "golesA":"-",
-        "golesB":"-"
-      });
-    objPartido1.save(null, {
-      success: function(object) {
-        elsuccess.show();
-        ellog.append("El Objeto " + nombre +  " guardado<br/>");
-      },
-      error: function(model, error) {
-        elerror.show();
-      }
-    });
-
-    
-    
-    // var TestObject = Parse.Object.extend("Jugador");
-    // var TestObject = Parse.Object.extend("Jugador");
-    // var TestObject = Parse.Object.extend("Jugador");
-    // var TestObject = Parse.Object.extend("Jugador");
-    // var TestObject = Parse.Object.extend("Jugador");
-
-
-  </script>
+</script>
 </body>
-
 </html>

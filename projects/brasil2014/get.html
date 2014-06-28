@@ -4,93 +4,144 @@
   <meta charset="utf-8">
   <meta name="description" content="My Parse App">
   <meta name="viewport" content="width=device-width">
-
-  <title>Brasil 2014 Admin</title>
-
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+  <title>FIFA World Cup Brazil 2014</title>
+  <style>
+    body {
+      width: 80%;
+      margin: 10px auto;
+      font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;
+    }
+    small {
+      color: #00760e;
+      font-size: 0.7em;
+    }
+  </style>
 </head>
-
 <body>
   
   <div id="main">
-    <h1>Brasil 2014!</h1>
+    <h1>FIFA World Cup</h1>
+    <h2>Brazil 2014</h2>
 
-    <div style="display:none" class="error">
-      Se ha generado un error
+    <div style="display:none" id="error"></div>
+
+    <div style="display:none" id="success">
+      <h3>Teams</h3>
     </div>
 
-    <div style="display:none" class="success">
-      <code id="log"></code>
-    </div>
+    <code id="log"></code>
   </div>
 
-  <script type="text/javascript">
+<script id="tpl-jugadores" type="text/x-handlebars-template">
+  <ul>
+    {{#each data}}
+    <li>{{nombre}} {{apellido}} <small>{{posicion}}</small></li>
+    {{/each}}
+  </ul>
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+<script type="text/javascript">
 
-    /*
-    Equipo
-    Jugador
-    Federacion
-    Torneo
-    Edicion
-    Partido
-    */
-    Parse.initialize("sdk", "js");
-    
-    var Equipo = Parse.Object.extend("Equipo");
-    var Jugador = Parse.Object.extend("Jugador");
+(function ($) {
+  'use strict';
 
-    var app = 
-    {
-      getJugadores: function(equipo)
+  var elsuccess = $('#success');
+  var elerror = $('#error');
+  var errorMsg = 'Se ha generado un error';
+  var ellog = $('#log');
+  var parseApp = parseApp || {};
+  
+  parseApp = (function()
+  {
+    var module = {
+
+      Selecciones: null
+      ,Equipo: null
+      ,Jugador: null
+      /*
+      Federacion
+      Torneo
+      Edicion
+      Partido
+      */
+
+      ,processJugadores: function (jugadores) 
       {
-        var query = new Parse.Query(Jugador);
-
-        query.equalTo("equipo", equipo);
-
-        query.find({
-          success: function(jugadores) {
-            // comments now contains the comments for myPost
-            console.log("2",jugadores);
-            return jugadores;
-          }
+        var arrayJug = [];
+        $.each(jugadores, function(i, jugadorObj)
+        {
+          arrayJug.push({
+            'nombre': jugadorObj.get('nombre'),
+            'apellido': jugadorObj.get('apellido'),
+            'posicion': jugadorObj.get('posicion')
+          });
         });
 
+        var source   = $('#tpl-jugadores').html();
+        var template = Handlebars.compile(source);
+        var html     = template({data:arrayJug});
+        elsuccess.append(html);
+      }
+
+      ,getJugadores: function(equipo)
+      {
+
+        var query = new Parse.Query(parseApp.Jugador);
+        query.equalTo('equipo', equipo);
+        query.find({
+          success: function(jugadores)
+          {
+            // equipo.id
+            elsuccess.append('<p>' + equipo.get('nombre') + '</p>' );
+            parseApp.processJugadores(jugadores);
+          },
+          error: function(selecciones, error)
+          {
+            elerror.show().append( errorMsg );
+          }
+        });
+      }
+
+      ,getSelecciones: function ()
+      {
+        var seleccionesCollection = new parseApp.Selecciones();
+        seleccionesCollection.fetch({
+          success: function(selecciones)
+          {
+            elsuccess.show();
+            selecciones.each(function(seleccion)
+            {
+              parseApp.getJugadores(seleccion);
+            });
+          },
+          error: function(selecciones, error)
+          {
+            elerror.show().append( errorMsg );
+          }
+        });
+      }
+
+      ,init: function ()
+      {
+        Parse.initialize('sdk', 'js');
+        parseApp.Equipo = Parse.Object.extend('Equipo');
+        parseApp.Jugador = Parse.Object.extend('Jugador');
+        parseApp.Selecciones = Parse.Collection.extend({
+          model: parseApp.Equipo
+        });
+        parseApp.getSelecciones();
       }
     }
 
-    var elsuccess = $(".success");
-    var elerror = $(".error");
-    var ellog = $("#log");
-    var nombre = "";
+    return module;
+  })();
 
-    
-    // A Collection containing all instances of TestObject.
-    var Selecciones = Parse.Collection.extend({
-      model: Equipo
-    });
+  parseApp.init();
 
-    var selecciones = new Selecciones();
-    selecciones.fetch({
-      success: function(selecciones) {
-        elsuccess.show();
+})(jQuery);
 
-        selecciones.each(function(seleccion) {
-          console.log("1",seleccion);
-          elsuccess.append(seleccion.get("nombre") + " " + seleccion.id + "</br>");
-          var jugadores = app.getJugadores(seleccion);
-          console.log("3",jugadores);
-        });
-      },
-      error: function(selecciones, error) {
-        // The collection could not be retrieved.
-        elerror.show();
-        elerror.append("Se ha generado un error");
-      }
-    });
-
-
-  </script>
+</script>
 </body>
-
 </html>
