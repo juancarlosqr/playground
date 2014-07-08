@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='store'>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crafted Gems Store</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body>
+    <div class="container">
+        <div class=" row">
+            <h1>Crafted Gems</h1>
+            <p> - An {{"Angular" + " store"}} -</p>
+        </div>
+        <div ng-controller="StoreController as store">
+        
+            <div ng-repeat="product in store.products | orderBy:'+price'">
+
+                <div class="panel panel-default">
+                    
+                    <div class="panel-body" ng-hide="product.soldOut">
+                        <h2>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h2>
+                        
+                        <div class="gallery" ng-show="product.images.length">
+                            <img ng-src="{{product.images[0].full}}">
+                        </div>
+
+                        <button class="btn btn-danger" ng-show="product.canPurchase">Add to Cart</button>
+
+                        <section class="tab" ng-controller="TabController as tab">
+                            <ul class="nav nav-pills">
+                                <li ng-class="{ active: tab.isSet(1) }">
+                                    <a href ng-click="tab.setTab(1)">Description</a>
+                                </li>
+                                <li ng-class="{ active: tab.isSet(2) }">
+                                    <a href ng-click="tab.setTab(2)">Specs</a>
+                                </li>
+                                <li ng-class="{ active: tab.isSet(3) }">
+                                    <a href ng-click="tab.setTab(3)">Reviews</a>
+                                </li>
+                            </ul>
+                            <div ng-show="tab.isSet(1)">
+                                <h4>Description</h4>
+                                <blockquote>{{product.description}}</blockquote>
+                            </div>
+                            <div ng-show="tab.isSet(2)">
+                                <h4>Specs</h4>
+                                <blockquote>
+                                <ul class="list-unstyled">
+                                    <li>Shine: {{product.shine}}</li>
+                                    <li>Rarity: {{product.rarity}}</li>
+                                    <li>Faces: {{product.faces}}</li>
+                                </ul>
+                                </blockquote>
+                            </div>
+                            <div ng-show="tab.isSet(3)">
+                                <h4>Reviews</h4>
+                                <blockquote>No reviews</blockquote>
+                            </div>
+                      </section>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer row">
+            <small>Powered by <em>Angular JS</em> - {{2000 + 14}}</small>
+        </div>
+    </div>
+
+<!-- <script type="text/javascript" src="assets/js/jquery.min.js"></script> -->
+<script type="text/javascript" src="assets/js/angular.min.js"></script>
+<script type="text/javascript" src="assets/js/app.js"></script>
+</body>
+</html>
