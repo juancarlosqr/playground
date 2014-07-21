@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>:: LaLigaScore Admin ::</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <script type="text/x-handlebars" id="application">
+
+    <!-- Header -->
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">La Liga Score</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li class="dropdown">
+              <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-cog"></i> juancarlosqr <span class="caret"></span></a>
+              <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                <li><a href="#">Mi Cuenta</a></li>
+              </ul>
+            </li>
+            <li><a href="#"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
+          </ul>
+        </div>
+      </div><!-- /container -->
+    </div>
+    <!-- /Header -->
+
+    <!-- Main -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+              <!-- Left column -->
+              <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Panel</strong></a>  
+              <!-- <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>   -->
+              
+              <hr>
+              
+              <ul class="list-unstyled">
+                <li class="nav-header">
+                    <a href="#" data-toggle="collapse" data-target="#userMenu">
+                        <h5>Menu <i class="glyphicon glyphicon-chevron-down"></i></h5>
+                    </a>
+                    <ul class="list-unstyled collapse in" id="userMenu">
+                        <li><a href="#"><i class="glyphicon glyphicon-home"></i> Inicio</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-bullhorn"></i> Partido</a></li>
+                        <li>
+                          {{#link-to 'equipo'}}<i class="glyphicon glyphicon-user"></i> Equipo{{/link-to}}
+                        </li>
+                        <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Edici&oacute;n</a></li>
+                        <li>
+                          {{#link-to 'torneo'}}<i class="glyphicon glyphicon-bookmark"></i> Torneos{{/link-to}}
+                        </li>
+                        <li><a href="#"><i class="glyphicon glyphicon-tasks"></i> Clasificaci&oacute;n</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-header">
+                    <a href="#" data-toggle="collapse" data-target="#menu3">
+                        <h5>Social Media&nbsp;<i class="glyphicon glyphicon-chevron-right"></i></h5>
+                    </a>
+                
+                    <ul class="list-unstyled collapse" id="menu3">
+                        <li><a href="#"><i class="glyphicon glyphicon-thumbs-up"></i> Facebook</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-retweet"></i> Twitter</a></li>
+                    </ul>
+                </li>
+
+              </ul>
+                   
+              <hr>
+              
+              <a href="#"><strong><i class="glyphicon glyphicon-link"></i> Recursos</strong></a>  
+              
+              <hr>
+              
+              
+            </div><!-- /col-3 -->
+            <div class="col-md-9">
+                
+              <!-- column 2 --> 
+              <ul class="list-inline pull-right">
+                 <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                         <i class="glyphicon glyphicon-comment"></i>
+                         <span class="count">&nbsp;3</span>
+                     </a>
+                     <ul class="dropdown-menu" role="menu">
+                         <li><a href="#">1. Is there a way..</a></li>
+                         <li><a href="#">2. Hello, admin. I would..</a></li>
+                         <li><a href="#"><strong>All messages</strong></a></li>
+                     </ul>
+                 </li>
+                 <li>
+                     <a href="#"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                 </li>
+                 <li>
+                     <a href="#"><i class="glyphicon glyphicon-user"></i></a>
+                 </li>
+                 <li>
+                     <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
+                 </li>
+              </ul>
+              <strong>Inicio</strong>
+              
+                <hr>
+              
+                <div class="row">
+                  
+                    <!-- center left--> 
+                    <div class="col-md-6">
+
+                      {{outlet}}
+
+                      <hr>
+                      
+                      
+           
+                    </div><!--/col-->
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                          <div class="panel-heading"><h4>Informaci&oacute;n</h4></div>
+                          <div class="panel-body">
+                              <strong>La Liga Score</strong><br>Una aplicaci&oacute;n para consultar los resultados de los partidos de cada jornada, y la clasificacion general de<br>La Liga.
+                          </div>
+                        </div>
+                      
+                    </div><!--/col-span-6-->
+             
+              </div><!--/row-->
+              
+              <hr>
+              
+              
+            </div><!--/col-span-9-->
+        </div>
+    </div>
+    <!-- /Main -->
+
+    <footer class="text-center">
+        La Liga Score 2014 - <a href="https://twiiter.com/juancarlosqr"><strong>juancarlosqr</strong></a>
+    </footer>
+
+    </script>
+
+
+
+    <div class="modal" id="widgetModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 class="modal-heading">Procesando datos</h3>
+            <h5 class="modal-heading">Espere un momento...</h5>
+            <img src="img/loader.gif">
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dalog -->
+    </div><!-- /.modal -->
+
+    <script type="text/x-handlebars" id="index">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h4>La Liga Score</h4></div>
+        <div class="panel-body">
+            Bienvenido
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" id="torneo">
+      <div class="panel panel-default">
+      <div class="panel-heading">
+          <div class="panel-title">
+          <i class="glyphicon glyphicon-wrench pull-right"></i>
+          <h4>Nuevo Torneo</h4>
+          </div>
+      </div>
+      <div class="panel-body">
+
+        <form class="form form-vertical">
+         
+          <div class="control-group">
+            <label>Nombre</label>
+            <div class="controls">
+              <input type="text" id="torneoNombre" class="form-control" placeholder="Indique un nombre">
+            </div>
+          </div>
+               
+          <div class="control-group">
+            <label>Pa&iacute;s</label>
+            <div class="controls">
+               <select id="torneoPais" class="form-control">
+                   <option value="-">Seleccione una opci&oacute;n</option>
+                   <option value="España">España</option>
+                   <option value="Venezuela">Venezuela</option>
+               </select>
+            </div>
+          </div>    
+          
+          <div class="control-group">
+              <label></label>
+              <div class="controls">
+              <button type="button" id="torneoBtnSave" class="btn btn-primary">
+                Guardar
+              </button>
+              </div>
+          </div>   
+          
+        </form>
+      
+        </div><!--/panel content-->
+      </div><!--/panel-->
+    </script>
+
+
+    <script type="text/x-handlebars" id="equipo">
+      <div class="panel panel-default">
+      <div class="panel-heading">
+          <div class="panel-title">
+          <i class="glyphicon glyphicon-wrench pull-right"></i>
+          <h4>Nuevo Equipo</h4>
+          </div>
+      </div>
+      <div class="panel-body">
+
+        <form class="form form-vertical">
+         
+          <div class="control-group">
+            <label>Nombre completo</label>
+            <div class="controls">
+              <input type="text" id="equipoNombreCompleto" class="form-control" placeholder="Indique el nombre completo">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>Abreviaci&oacute;n</label>
+            <div class="controls">
+              <input type="text" id="equipoNombreCorto" class="form-control" placeholder="Indique un abreviaci&oacute;n">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>URL del escudo</label>
+            <div class="controls">
+              <input type="text" id="equipoUrlEscudo" class="form-control" placeholder="Indique la url de la imagen del escudo">
+            </div>
+          </div>
+                  
+          
+          <div class="control-group">
+              <label></label>
+              <div class="controls">
+              <button type="button" id="equipoBtnSave" class="btn btn-primary">
+                Guardar
+              </button>
+              </div>
+          </div>   
+          
+        </form>
+      
+        </div><!--/panel content-->
+      </div><!--/panel-->
+    </script>
+
+<!-- script references -->
+<script src="js/libs/jquery.min.2.0.2.js"></script>
+<script src="js/libs/bootstrap.min.js"></script>
+<script src="js/libs/scripts.js"></script>
+
+<script src="js/libs/handlebars-1.1.2.js"></script>
+<script src="js/libs/ember-1.6.1.js"></script>
+
+<!-- <script src="js/libs/parse-1.2.19.min.js"></script> -->
+
+<script src="js/app.js"></script>
+<script src="js/router.js"></script>
+</body>
+</html>
