@@ -3,8 +3,9 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>:: MovieTracker ::</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="img/ico.png">
+    <title>:: MovieTracker ::</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
         <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -14,18 +15,49 @@
 <body>
     <script type="text/x-handlebars" data-template-name="application">
         <div class="container">
+
             <h1>MovieTracker</h1>
             <h6>Powered by Ember</h6>
+
+            <div class="actions">
+                {{gravatar-image}}
+            </div>
             <div class="actions">
                 <button class="btn btn-success" {{action 'saveStatic'}}>New Movie</button>
                 <button class="btn btn-warning" {{action 'changeStatic'}}>New Movie & Change Movie title after 2 seconds</button>
             </div>
-        	<div id="output">
+            <div id="output">
                 <hr>
             </div>
         </div>
     </script>
+    
+    <script type="text/x-handlebars" id="components/gravatar-image">
+        <div class="row">
+            <div class="col-md-9">
+                    
+                <p>My email is <strong class="text-primary">{{email}}</strong></p>
+
+                <form role="form">
+                    <div class="form-group">
+                        <label for="email">Gravatar</label>
+                        {{input id="email" type="email" class="form-control" value=email placeholder="Enter your Gravatar e-mail"}}
+                    </div>
+                </form>
+                
+                <p>Go and get mi gravatar!</p>
+                
+            </div>
+            <div class="col-md-3 text-right">
+                <div class="gravatar-image">
+                    <img {{bind-attr src=gravatarUrl}}>
+                </div>
+            </div>
+        </div>
+    </script>
+
 <script src="js/libs/jquery-1.10.2.js"></script>
+<script src="js/libs/md5.js"></script>
 <script src="js/libs/handlebars-1.1.2.js"></script>
 <script src="js/libs/ember-1.6.1.js"></script>
 <script src="js/app.js"></script>
