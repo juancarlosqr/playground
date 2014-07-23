@@ -9,16 +9,22 @@
     <!--[if lt IE 9]>
         <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-	
-	<script type="text/x-handlebars" data-template-name="application">
-		<div class="container">
-			<h1>MovieTracker</h1>
-		</div>
-	</script>
-
+    <script type="text/x-handlebars" data-template-name="application">
+        <div class="container">
+            <h1>MovieTracker</h1>
+            <h6>Powered by Ember</h6>
+            <div class="actions">
+                <button class="btn btn-success" {{action 'saveStatic'}}>New Movie</button>
+                <button class="btn btn-warning" {{action 'changeStatic'}}>New Movie & Change Movie title after 2 seconds</button>
+            </div>
+        	<div id="output">
+                <hr>
+            </div>
+        </div>
+    </script>
 <script src="js/libs/jquery-1.10.2.js"></script>
 <script src="js/libs/handlebars-1.1.2.js"></script>
 <script src="js/libs/ember-1.6.1.js"></script>
@@ -27,6 +33,6 @@
 <script src="js/controllers/application.js"></script>
 <script src="js/views/application.js"></script>
 <script src="js/models/movie.js"></script>
-
+<script src="js/models/actor.js"></script>
 </body>
 </html>
