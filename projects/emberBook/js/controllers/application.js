@@ -29,23 +29,18 @@ MovieTracker.ApplicationController = Ember.Controller.extend({
     }
 });
 
-// MovieTracker.moviesController = Ember.ArrayController.create({
-// 	content: [],
-// 	init: function(){
-// 		this._super();
-// 		var list = [
-// 			MovieTracker.Movie.create({
-// 				title: 'Movie 1',
-// 				rating: 4
-// 			}),
-// 			MovieTracker.Movie.create({
-// 				title: 'Movie 2',
-// 				rating: 5
-// 			})
-// 		];
-// 		this.set('content', list);
-// 	}
-// });
+// MovieTracker.moviesController = Ember.ArrayController.create();
+
+// MovieTracker.moviesController.set('content', [
+//     MovieTracker.Movie.create({
+// 		title:'The Avengers',
+// 		rating: 4
+// 	}),
+//     MovieTracker.Movie.create({
+//         title: 'Spiderman',
+//         rating: 2
+//     })
+// ]);
 
 // MovieTracker.selectedMovieController = Ember.ObjectController.create({
 // 	selectedMovie: [],
