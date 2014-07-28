@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>EmberJS rocks!</title>
+  <link rel="shortcut icon" href="img/ico.png">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script type="text/x-handlebars">
+    <h2>Welcome to Ember.js</h2>
+    <div class="nav">
+      <p>{{#link-to 'index'}}Home{{/link-to}}</p>
+      <p>{{#link-to 'about'}}About{{/link-to}}</p>
+      <p>{{#link-to 'data-binding'}}Data Binding 101{{/link-to}}</p>
+      <p>{{#link-to 'teams'}}Teams{{/link-to}}</p>
+      <p>{{#link-to 'player'}}Player{{/link-to}}</p>
+      <p>{{#link-to 'redirect'}}Redirect to About{{/link-to}}</p>
+      <p>{{#link-to 'set-get'}}Set and Get{{/link-to}}</p>
+      <p>{{#link-to 'helpers'}}Helpers{{/link-to}}</p>
+    </div>
+
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="index">
+    <h3>Home</h3>
+    <ul>
+    {{#each item in model}}
+      <li>{{item}}</li>
+    {{/each}}
+    </ul>
+    <p><a href {{action 'linkClicked'}}>Redirect Link</a></p>
+  </script>
+
+  <script type="text/x-handlebars" id="about">
+    <h3>About Me</h3>
+    <p {{action 'pClicking'}}>I am a very cool guy, click me and u will see</p>
+    <p>{{username}}</p>
+  </script>
+
+  <script type="text/x-handlebars" id="acerca">
+    <h3>Acerca</h3>
+    <p {{action 'pClicking'}}>I am a very nice guy</p>
+    <p><i>{{username}}</i></p>
+  </script>
+
+  <script type="text/x-handlebars" id="data-binding">
+    <h3>Data Binding 101</h3>
+    <p><strong>Name: </strong>{{firstName}} {{lastName}}</p>
+    <p><strong>Age: </strong>{{info.age}}</p>
+    <!-- next property doesnt exist, so ember doesnt do anything about it -->
+    <p>{{info.height}}</p>
+  </script>
+
+  <script type="text/x-handlebars" id="teams">
+    <h3>Teams</h3>
+    <ul>
+    {{#each item in model}}
+      <li>{{item}}</li>
+    {{/each}}
+    </ul>
+  </script> 
+
+  <script type="text/x-handlebars" id="player">
+    <h3>Player</h3>
+    <p><strong>Name: </strong>{{name}}</p>
+    <p><strong>Number: </strong>{{number}}</p>
+  </script>
+
+  <script type="text/x-handlebars" id="set-get">
+    <p>{{title}}</p>
+    <div class="nav">
+      <p><a href="" {{action 'showInfo'}}>More Info</a></p>
+      <p><a href="" {{action 'defaultInfo'}}>Default Info</a></p>
+      <p><a href="" {{action 'changeInfo'}}>Change Info</a></p>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id="helpers">
+    <h3>Helpers</h3>
+    <img {{bind-attr src=imageSrc }} alt="" />
+    <p>
+      <label for="first-input"><strong>Username: </strong></label>{{input id="first-input" value=firstInput}}
+    </p>
+    <p>
+      {{firstInput}}
+    </p>
+    <p>{{makeReview description}}</p>
+    <p>{{description}}</p>
+  </script>
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.6.1.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/controllers.js"></script>
+</body>
+</html>
