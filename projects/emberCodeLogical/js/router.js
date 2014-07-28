@@ -7,6 +7,7 @@ App.Router.map(function() {
   this.route('redirect', {path: 'redirect'});
   this.route('set-get', {path: 'setters-getters'});
   this.route('helpers', {path: 'helpers'});
+  this.route('models', {path: 'models'});
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -42,5 +43,11 @@ App.PlayerRoute = Ember.Route.extend({
 App.RedirectRoute = Ember.Route.extend({
 	redirect: function () {
 		this.transitionTo('about');
+	}
+});
+
+App.ModelsRoute = Ember.Route.extend({
+	model: function () {
+		return this.store.find('person');
 	}
 });

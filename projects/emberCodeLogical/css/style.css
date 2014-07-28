@@ -1,9 +1,27 @@
-/* Put your CSS here */
+table {
+	width: 50%;
+}
+table thead th, table tbody td {
+	text-align: left;
+}
+a {
+	text-decoration: none;
+	color: #41B7D8;
+}
+a:active {
+	color: #FFF;
+	background-color: orange;
+}
+a.active{
+	color: orange;
+}
+a.active:active {
+	color: #FFF;
+}
 .ember-application {
     margin: 20px auto;
     width: 70%;
 }
-
 .nav p {
 	display: inline;
 	padding-right: 20px;

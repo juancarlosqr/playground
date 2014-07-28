@@ -117,4 +117,12 @@ wget --no-parent -r -p -U Mozilla http://wp-desk.com/lovinflat/
 
 ------------------------------------------------------------------------
 
+MAC command line
+
+Listing processes
+sudo lsof -i -n -P | grep LISTEN
+
+Killing processes
+sudo kill -9 {pid}
+
 

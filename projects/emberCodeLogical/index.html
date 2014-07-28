@@ -20,6 +20,7 @@
       <p>{{#link-to 'redirect'}}Redirect to About{{/link-to}}</p>
       <p>{{#link-to 'set-get'}}Set and Get{{/link-to}}</p>
       <p>{{#link-to 'helpers'}}Helpers{{/link-to}}</p>
+      <p>{{#link-to 'models'}}Models{{/link-to}}</p>
     </div>
 
     {{outlet}}
@@ -62,6 +63,7 @@
       <li>{{item}}</li>
     {{/each}}
     </ul>
+    <button {{action 'addNewItem'}}>Add New</button>
   </script> 
 
   <script type="text/x-handlebars" id="player">
@@ -90,12 +92,41 @@
     </p>
     <p>{{makeReview description}}</p>
     <p>{{description}}</p>
+    <p><strong>...and also Databinding 102</strong></p>
+  </script>
+
+  <script type="text/x-handlebars" id="models">
+    <h3>Models</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+          {{#each item in model}}
+          <tr>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.age}}</td>
+          </tr>
+          {{/each}}
+      </tbody>
+    </table>
+  </script>
+
+  <script type="text/x-handlebars" id="loading">
+    <h5>Loading...</h5>
   </script>
 
   <script src="js/libs/jquery-1.10.2.js"></script>
-  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/handlebars-v1.3.0.js"></script>
   <script src="js/libs/ember-1.6.1.js"></script>
+  <script src="js/libs/ember-data.min.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/models/person.js"></script>
   <script src="js/router.js"></script>
   <script src="js/controllers.js"></script>
 </body>

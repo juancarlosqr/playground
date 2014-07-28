@@ -23,8 +23,13 @@ App.DataBindingController = Ember.Controller.extend({
 	}
 });
 
-/* We dont use this, so ember create the Object */
-// App.TeamsController = Ember.Controller.extend({ });
+App.TeamsController = Ember.Controller.extend({
+	actions: {
+		addNewItem: function () {
+			this.get('model').pushObject('Inter de Milan');
+		}
+	}
+});
 
 /* We dont use this, so ember create the Object */
 // App.PlayerController = Ember.Controller.extend({ });
@@ -46,6 +51,7 @@ App.SetGetController = Ember.Controller.extend({
 });
 
 App.HelpersController = Ember.Controller.extend({
+	firstInput: 'juancarlosqr',
 	imageSrc: 'img/ico.png',
 	description: 'Long ago, in a time forgotten, a preternatural event threw the seasons out of balance.'
 });
