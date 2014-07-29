@@ -4,6 +4,8 @@ App.Person = DS.Model.extend({
     age: DS.attr()
 });
 
+// App.PersonAdapter = DS.RESTAdapter.extend({});
+
 App.PersonAdapter = DS.FixtureAdapter.extend({});
 
 App.Person.FIXTURES = [

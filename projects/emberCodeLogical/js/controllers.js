@@ -1,3 +1,7 @@
+App.ApplicationController = Ember.Controller.extend({
+	imageSrc: 'img/ico.png'
+});
+
 App.IndexController = Ember.ObjectController.extend({
 	actions: {
 		linkClicked: function () {
@@ -18,9 +22,19 @@ App.AboutController = Ember.Controller.extend({
 App.DataBindingController = Ember.Controller.extend({
 	firstName: 'juan carlos',
 	lastName: 'quintero',
+	search: '',
 	info: {
 		age: 26
-	}
+	},
+	/* Computed properties */
+	fullName: function () {
+		return this.get('firstName') + ' ' + this.get('lastName') +  ' is ' + this.get('info.age') + ' years old';
+	}.property('firstName','lastName','info.age'),
+	/* Observed property */
+	firstNameChange: function () {
+		console.log(this.get('firstName'));
+		this.set('search',this.get('firstName'));
+	}.observes('firstName')
 });
 
 App.TeamsController = Ember.Controller.extend({
@@ -52,8 +66,20 @@ App.SetGetController = Ember.Controller.extend({
 
 App.HelpersController = Ember.Controller.extend({
 	firstInput: 'juancarlosqr',
-	imageSrc: 'img/ico.png',
-	description: 'Long ago, in a time forgotten, a preternatural event threw the seasons out of balance.'
+	imageSrc: 'img/canary.png',
+	imageHeight: '150px',
+	description: 'Long ago, in a time forgotten, a preternatural event threw the seasons out of balance.',
+	actions: {
+		showRelease: function () {
+			this.set('imageSrc','img/release.png');
+		},
+		showBeta: function () {
+			this.set('imageSrc','img/beta.png');
+		},
+		showCanary: function () {
+			this.set('imageSrc','img/canary.png');
+		}
+	}
 });
 
 /* Custom Helper */

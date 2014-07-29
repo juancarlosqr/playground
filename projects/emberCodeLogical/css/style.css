@@ -1,3 +1,14 @@
+header {
+	margin-bottom: 15px;
+}
+header img {
+	margin-right: 25px;
+}
+header h2 {
+	vertical-align: top;
+	line-height: 3.3em;
+	display: inline;
+}
 table {
 	width: 50%;
 }

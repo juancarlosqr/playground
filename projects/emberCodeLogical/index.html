@@ -8,9 +8,12 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+  
   <script type="text/x-handlebars">
-    <h2>Welcome to Ember.js</h2>
+    <header>
+      <img {{bind-attr src=imageSrc }} alt="" />
+      <h2>Welcome to Ember.js</h2>
+    </header>
     <div class="nav">
       <p>{{#link-to 'index'}}Home{{/link-to}}</p>
       <p>{{#link-to 'about'}}About{{/link-to}}</p>
@@ -21,6 +24,7 @@
       <p>{{#link-to 'set-get'}}Set and Get{{/link-to}}</p>
       <p>{{#link-to 'helpers'}}Helpers{{/link-to}}</p>
       <p>{{#link-to 'models'}}Models{{/link-to}}</p>
+      <p>{{#link-to 'blog'}}Blog{{/link-to}}</p>
     </div>
 
     {{outlet}}
@@ -54,6 +58,9 @@
     <p><strong>Age: </strong>{{info.age}}</p>
     <!-- next property doesnt exist, so ember doesnt do anything about it -->
     <p>{{info.height}}</p>
+    <p><strong>First Name: </strong>{{input value=firstName}}</p>
+    <p><strong>Computed: </strong>{{fullName}}</p>
+    <p><strong>Observes: </strong>{{search}}</p>
   </script>
 
   <script type="text/x-handlebars" id="teams">
@@ -83,7 +90,13 @@
 
   <script type="text/x-handlebars" id="helpers">
     <h3>Helpers</h3>
-    <img {{bind-attr src=imageSrc }} alt="" />
+    <img {{bind-attr src=imageSrc }} {{bind-attr height=imageHeight }} alt="" />
+    <p>
+      <strong>Images </strong>
+      <button {{action 'showRelease'}}>Release</button>
+      <button {{action 'showBeta'}}>Beta</button>
+      <button {{action 'showCanary'}}>Canary</button>
+    </p>
     <p>
       <label for="first-input"><strong>Username: </strong></label>{{input id="first-input" value=firstInput}}
     </p>
@@ -120,6 +133,30 @@
   <script type="text/x-handlebars" id="loading">
     <h5>Loading...</h5>
   </script>
+  
+  <script type="text/x-handlebars" id="blog">
+    <h3>Blog</h3>
+    {{#each}}
+      <p>{{#link-to 'article' this}}{{title}}{{/link-to}}</p>
+      <hr>
+    {{/each}}
+  </script>
+
+  <script type="text/x-handlebars" id="article">
+    <h3>Blog</h3>
+    <h4>{{title}}</h4>
+    <p><code>{{body}}</code></p>
+    <div>
+      <h5>Comments</h5>
+      {{#each comments}}
+        <p><small><i>{{text}}</i></small></p>
+        <hr>
+      {{else}}
+        <p><small><i>No comments</i></small></p>
+      {{/each}}
+    </div>
+    <p>{{#link-to 'blog'}}Go back to blog{{/link-to}}</p>
+  </script>
 
   <script src="js/libs/jquery-1.10.2.js"></script>
   <script src="js/libs/handlebars-v1.3.0.js"></script>
@@ -127,6 +164,8 @@
   <script src="js/libs/ember-data.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/models/person.js"></script>
+  <script src="js/models/article.js"></script>
+  <script src="js/models/comment.js"></script>
   <script src="js/router.js"></script>
   <script src="js/controllers.js"></script>
 </body>

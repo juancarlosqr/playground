@@ -8,6 +8,8 @@ App.Router.map(function() {
   this.route('set-get', {path: 'setters-getters'});
   this.route('helpers', {path: 'helpers'});
   this.route('models', {path: 'models'});
+  this.route('blog', {path: 'blog'});
+  this.route('article', {path: 'articles/:article_id'});
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -51,3 +53,10 @@ App.ModelsRoute = Ember.Route.extend({
 		return this.store.find('person');
 	}
 });
+
+App.BlogRoute = Ember.Route.extend({
+	model: function () {
+		return this.store.find('article');
+	}
+});
+
