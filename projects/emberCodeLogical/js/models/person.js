@@ -1,9 +1,10 @@
 App.Person = DS.Model.extend({
     firstName: DS.attr(),
     lastName: DS.attr(),
-    age: DS.attr()
+    email: DS.attr()
 });
 
+/* RESTAdapter is the default Ember Adapter */
 // App.PersonAdapter = DS.RESTAdapter.extend({});
 
 App.PersonAdapter = DS.FixtureAdapter.extend({});
@@ -13,30 +14,30 @@ App.Person.FIXTURES = [
         id: 1,
         firstName: 'Jhon',
         lastName: 'Doe',
-        age: 23
+        email: 'jhon.doe@emberjscss.com'
     },
     {
         id: 2,
         firstName: 'Michael',
-        lastName: 'Jordan',
-        age: 45
+        lastName: 'Stewart',
+        email: 'michael.stewart@emberjscss.com'
     },
     {
         id: 3,
         firstName: 'Derek',
-        lastName: 'Jeter',
-        age: 35
+        lastName: 'Smith',
+        email: 'derek.smith@emberjscss.com'
     },
     {
         id: 4,
         firstName: 'Jane',
         lastName: 'Doe',
-        age: 22
+        email: 'jane.doe@emberjscss.com'
     },
     {
         id: 5,
-        firstName: 'Zinedine',
-        lastName: 'Zidane',
-        age: 38
+        firstName: 'Ryan',
+        lastName: 'Dale',
+        email: 'ryan.dale@emberjscss.com'
     }
 ];

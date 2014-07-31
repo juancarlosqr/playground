@@ -10,7 +10,7 @@ header h2 {
 	display: inline;
 }
 table {
-	width: 50%;
+	width: 100%;
 }
 table thead th, table tbody td {
 	text-align: left;
@@ -31,10 +31,10 @@ a.active:active {
 }
 .ember-application {
     margin: 20px auto;
-    width: 70%;
+    width: 55%;
 }
 .nav p {
-	display: inline;
+	display: inline-block;
 	padding-right: 20px;
-	padding-bottom: 10px;
+	margin: 10px 0;
 }

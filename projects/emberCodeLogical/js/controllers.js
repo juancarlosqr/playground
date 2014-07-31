@@ -3,9 +3,17 @@ App.ApplicationController = Ember.Controller.extend({
 });
 
 App.IndexController = Ember.ObjectController.extend({
+	needs: ['decorating'],
 	actions: {
 		linkClicked: function () {
 			this.transitionToRoute('about');
+		},
+		callDecoratingController: function () {
+			this.get('controllers.decorating').send('popdie');
+		},
+		popup: function () {
+			console.log('inside IndexController');
+			alert('or Go Home!');
 		}
 	}
 });
@@ -82,7 +90,23 @@ App.HelpersController = Ember.Controller.extend({
 	}
 });
 
-/* Custom Helper */
-Ember.Handlebars.helper('makeReview', function (value, option) {
-	return value.substr(0, 8) + '...';
+App.MovieController = Ember.Controller.extend({
+	actions: {
+		handlerSubmit: function () {
+			alert('Movie title: ' + this.get('title'));
+		}
+	}
+});
+
+App.DecoratingController = Ember.Controller.extend({
+	needs: ['index'],
+	actions: {
+		callIndexController: function () {
+			this.get('controllers.index').send('popup');
+		},
+		popdie: function () {
+			console.log('inside DecoratingController');
+			alert('All men must die');
+		}
+	}
 });

@@ -7,14 +7,22 @@ App.Router.map(function() {
   this.route('redirect', {path: 'redirect'});
   this.route('set-get', {path: 'setters-getters'});
   this.route('helpers', {path: 'helpers'});
-  this.route('models', {path: 'models'});
+  this.route('leyends', {path: 'leyends'});
   this.route('blog', {path: 'blog'});
   this.route('article', {path: 'articles/:article_id'});
+  this.route('people', {path: 'people'});
+  /* using a different param name instead of the convention name (:person_id) */
+  this.route('person', {path: 'people/:fixed_id'});
+  this.route('movie', {path: 'movie'});
+  this.route('decorating', {path: 'decorating'});
+  this.resource('smartphones',{path: 'smartphones'}, function () {
+  	this.route('new', {path: 'new'});
+  });
 });
 
 App.IndexRoute = Ember.Route.extend({
   model: function() {
-    return ['red', 'yellow', 'blue'];
+    return ['Ember', 'Parse', 'Android'];
   }
 });
 
@@ -48,9 +56,9 @@ App.RedirectRoute = Ember.Route.extend({
 	}
 });
 
-App.ModelsRoute = Ember.Route.extend({
+App.LeyendsRoute = Ember.Route.extend({
 	model: function () {
-		return this.store.find('person');
+		return this.store.find('leyend');
 	}
 });
 
@@ -60,3 +68,36 @@ App.BlogRoute = Ember.Route.extend({
 	}
 });
 
+App.PeopleRoute = Ember.Route.extend({
+	model: function () {
+		return this.store.find('person');
+	}
+});
+
+/*
+Dynamic url segment
+if we use the parameter convention name the next route definition wouldn't be necessary
+*/
+App.PersonRoute = Ember.Route.extend({
+	model: function (params) {
+		return this.store.find('person', params.fixed_id);
+	}
+});
+
+/* Decorating Controllers */
+App.DecoratingRoute = Ember.Route.extend({
+	model: function () {
+		return ['Daenerys Targaryen', 'Arya Stark', 'Tyrion Lannister'];
+	},
+	setupController: function (controller, model) {
+		controller.set('model', model);
+		controller.set('morghulis', 'Valar Morghulis');
+	}
+});
+
+/* Nested Routes */
+App.SmartphonesIndexRoute = Ember.Route.extend({
+	model: function () {
+		return ['Nexus 5', 'iPhone 5', 'Samsung Galaxy 5S'];
+	}
+});
