@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>:: LaLigaScore Admin ::</title>
+    <title>:: LaLigaScore App ::</title>
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -14,6 +14,7 @@
 </head>
 <body>
 
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - application - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <script type="text/x-handlebars" id="application">
 
     <!-- Header -->
@@ -25,7 +26,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">La Liga Score</a>
+          <a class="navbar-brand" href="#">LaLigaScore App</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -55,30 +56,32 @@
               
               <ul class="list-unstyled">
                 <li class="nav-header">
-                    <a href="#" data-toggle="collapse" data-target="#userMenu">
+                    <a data-toggle="collapse" data-target="#mainMenu">
                         <h5>Menu <i class="glyphicon glyphicon-chevron-down"></i></h5>
                     </a>
-                    <ul class="list-unstyled collapse in" id="userMenu">
-                        <li><a href="#"><i class="glyphicon glyphicon-home"></i> Inicio</a></li>
-                        <li><a href="#"><i class="glyphicon glyphicon-bullhorn"></i> Partido</a></li>
+                    <ul class="list-unstyled collapse in" id="mainMenu">
+                        <li><a href="#"><i class="glyphicon glyphicon-tasks"></i> Inicio</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-bullhorn"></i> Partidos</a></li>
                         <li>
-                          {{#link-to 'equipo'}}<i class="glyphicon glyphicon-user"></i> Equipo{{/link-to}}
+                          {{#link-to 'teams'}}<i class="glyphicon glyphicon-user"></i> Equipos{{/link-to}}
                         </li>
-                        <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Edici&oacute;n</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Ediciones</a></li>
                         <li>
-                          {{#link-to 'torneo'}}<i class="glyphicon glyphicon-bookmark"></i> Torneos{{/link-to}}
+                          {{#link-to 'tournaments'}}<i class="glyphicon glyphicon-bookmark"></i> Torneos{{/link-to}}
                         </li>
-                        <li><a href="#"><i class="glyphicon glyphicon-tasks"></i> Clasificaci&oacute;n</a></li>
+                        <li>
+                          {{#link-to 'countries'}}<i class="glyphicon glyphicon-globe"></i> Pa&iacute;ses{{/link-to}}
+                        </li>
                         <li><a href="#"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
                     </ul>
                 </li>
                 
                 <li class="nav-header">
-                    <a href="#" data-toggle="collapse" data-target="#menu3">
+                    <a data-toggle="collapse" data-target="#socialMenu">
                         <h5>Social Media&nbsp;<i class="glyphicon glyphicon-chevron-right"></i></h5>
                     </a>
                 
-                    <ul class="list-unstyled collapse" id="menu3">
+                    <ul class="list-unstyled collapse" id="socialMenu">
                         <li><a href="#"><i class="glyphicon glyphicon-thumbs-up"></i> Facebook</a></li>
                         <li><a href="#"><i class="glyphicon glyphicon-retweet"></i> Twitter</a></li>
                     </ul>
@@ -161,30 +164,74 @@
 
     </script>
 
-
-
-    <div class="modal" id="widgetModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <h3 class="modal-heading">Procesando datos</h3>
-            <h5 class="modal-heading">Espere un momento...</h5>
-            <img src="img/loader.gif">
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dalog -->
-    </div><!-- /.modal -->
-
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - index - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <script type="text/x-handlebars" id="index">
       <div class="panel panel-default">
         <div class="panel-heading"><h4>La Liga Score</h4></div>
         <div class="panel-body">
             Bienvenido
-        </div>
-      </div>
+        </div><!--/panel-body-->
+      </div><!--/panel-->
     </script>
 
-    <script type="text/x-handlebars" id="torneo">
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - loading - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <script type="text/x-handlebars" id="loading">
+      <p>Cargando informaci&oacute;n...</p>
+    </script>
+
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - countries - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <script type="text/x-handlebars" id="countries">
+      <div class="panel panel-default">
+      <div class="panel-heading">
+          <div class="panel-title">
+          <i class="glyphicon glyphicon-wrench pull-right"></i>
+          <h4>Nuevo Pa&iacute;s</h4>
+          </div>
+      </div>
+      <div class="panel-body">
+
+        <form class="form form-vertical" {{action 'handlerSubmit' on='submit'}}>
+         
+          <div class="control-group">
+            <label for="countryName">Nombre</label>
+            <div class="controls">
+              {{input id="countryName" value=countryName class="form-control" placeholder="Indique un nombre"}}
+            </div>
+          </div>   
+          
+          <div class="control-group">
+              <label></label>
+              <div class="controls">
+              <button type="submit" class="btn btn-primary">
+                Guardar
+              </button>
+              </div>
+          </div>   
+          
+        </form>
+      
+        </div><!--/panel-body-->
+      </div><!--/panel-->
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each item in model}}
+            <tr><td>{{item.id}}</td><td>{{item.name}}</td></tr>
+          {{else}}
+            <tr><td colspan="2">No hay resultados</td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </script>
+
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - tournaments - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <script type="text/x-handlebars" id="tournaments">
       <div class="panel panel-default">
       <div class="panel-heading">
           <div class="panel-title">
@@ -225,71 +272,75 @@
           
         </form>
       
-        </div><!--/panel content-->
+        </div><!--/panel-body-->
       </div><!--/panel-->
     </script>
 
-
-    <script type="text/x-handlebars" id="equipo">
+    <!--  - - - - - - - - - - - - - - - - - - - - - - - - teams - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <script type="text/x-handlebars" id="teams">
       <div class="panel panel-default">
-      <div class="panel-heading">
-          <div class="panel-title">
-          <i class="glyphicon glyphicon-wrench pull-right"></i>
-          <h4>Nuevo Equipo</h4>
-          </div>
-      </div>
-      <div class="panel-body">
 
-        <form class="form form-vertical">
-         
-          <div class="control-group">
-            <label>Nombre completo</label>
-            <div class="controls">
-              <input type="text" id="equipoNombreCompleto" class="form-control" placeholder="Indique el nombre completo">
+        <div class="panel-heading">
+            <div class="panel-title">
+            <i class="glyphicon glyphicon-wrench pull-right"></i>
+            <h4>Nuevo Equipo</h4>
             </div>
-          </div>
+        </div>
 
-          <div class="control-group">
-            <label>Abreviaci&oacute;n</label>
-            <div class="controls">
-              <input type="text" id="equipoNombreCorto" class="form-control" placeholder="Indique un abreviaci&oacute;n">
-            </div>
-          </div>
+        <div class="panel-body">
 
-          <div class="control-group">
-            <label>URL del escudo</label>
-            <div class="controls">
-              <input type="text" id="equipoUrlEscudo" class="form-control" placeholder="Indique la url de la imagen del escudo">
-            </div>
-          </div>
-                  
-          
-          <div class="control-group">
-              <label></label>
+          <form class="form form-vertical">
+           
+            <div class="control-group">
+              <label>Nombre completo</label>
               <div class="controls">
-              <button type="button" id="equipoBtnSave" class="btn btn-primary">
-                Guardar
-              </button>
+                <input type="text" id="equipoNombreCompleto" class="form-control" placeholder="Indique el nombre completo">
               </div>
-          </div>   
-          
-        </form>
+            </div>
+
+            <div class="control-group">
+              <label>Abreviaci&oacute;n</label>
+              <div class="controls">
+                <input type="text" id="equipoNombreCorto" class="form-control" placeholder="Indique un abreviaci&oacute;n">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label>URL del escudo</label>
+              <div class="controls">
+                <input type="text" id="equipoUrlEscudo" class="form-control" placeholder="Indique la url de la imagen del escudo">
+              </div>
+            </div>
+                    
+            
+            <div class="control-group">
+                <label></label>
+                <div class="controls">
+                <button type="button" id="equipoBtnSave" class="btn btn-primary">
+                  Guardar
+                </button>
+                </div>
+            </div>   
+            
+          </form>
       
-        </div><!--/panel content-->
+        </div><!--/panel-body-->
       </div><!--/panel-->
     </script>
 
-<!-- script references -->
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - scripts references - - - - - - - - - - - - - - - - - - - - - - - -  -->
 <script src="js/libs/jquery.min.2.0.2.js"></script>
 <script src="js/libs/bootstrap.min.js"></script>
 <script src="js/libs/scripts.js"></script>
 
 <script src="js/libs/handlebars-1.1.2.js"></script>
 <script src="js/libs/ember-1.6.1.js"></script>
-
-<!-- <script src="js/libs/parse-1.2.19.min.js"></script> -->
+<script src="js/libs/ember-data.min.js"></script>
+<script src="js/libs/ember-parse-adapter.min.js"></script>
 
 <script src="js/app.js"></script>
+<script src="js/models/country.js"></script>
 <script src="js/router.js"></script>
+<script src="js/controllers.js"></script>
 </body>
 </html>
