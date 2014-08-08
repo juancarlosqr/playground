@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <!--  - - - - - - - - - - - - - - - - - - - - - - - - application - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!--  - - - - - - - - -  application - - - - - - - - - - - -  -->
     <script type="text/x-handlebars" id="application">
 
     <!-- Header -->
@@ -47,7 +47,7 @@
     <!-- Main -->
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <!-- Left column -->
               <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Panel</strong></a>  
               <!-- <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>   -->
@@ -65,7 +65,9 @@
                         <li>
                           {{#link-to 'teams'}}<i class="glyphicon glyphicon-user"></i> Equipos{{/link-to}}
                         </li>
-                        <li><a href="#"><i class="glyphicon glyphicon-flag"></i> Ediciones</a></li>
+                        <li>
+                          {{#link-to 'editions'}}<i class="glyphicon glyphicon-flag"></i> Ediciones{{/link-to}}
+                        </li>
                         <li>
                           {{#link-to 'tournaments'}}<i class="glyphicon glyphicon-bookmark"></i> Torneos{{/link-to}}
                         </li>
@@ -96,8 +98,8 @@
               <hr>
               
               
-            </div><!-- /col-3 -->
-            <div class="col-md-9">
+            </div><!-- /col-2 -->
+            <div class="col-md-10">
                 
               <!-- column 2 --> 
               <ul class="list-inline pull-right">
@@ -122,38 +124,20 @@
                      <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
                  </li>
               </ul>
-              <strong>Inicio</strong>
+              <strong>&nbsp;</strong>
               
                 <hr>
               
-                <div class="row">
+              <div class="row">
                   
-                    <!-- center left--> 
-                    <div class="col-md-6">
-
-                      {{outlet}}
-
-                      <hr>
-                      
-                      
-           
-                    </div><!--/col-->
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                          <div class="panel-heading"><h4>Informaci&oacute;n</h4></div>
-                          <div class="panel-body">
-                              <strong>La Liga Score</strong><br>Una aplicaci&oacute;n para consultar los resultados de los partidos de cada jornada, y la clasificacion general de<br>La Liga.
-                          </div>
-                        </div>
-                      
-                    </div><!--/col-span-6-->
+                {{outlet}}
              
               </div><!--/row-->
               
               <hr>
               
               
-            </div><!--/col-span-9-->
+            </div><!--/col-span-10-->
         </div>
     </div>
     <!-- /Main -->
@@ -164,28 +148,79 @@
 
     </script>
 
-    <!--  - - - - - - - - - - - - - - - - - - - - - - - - index - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!--  - - - - - - - - -  index - - - - - - - - - - - -  -->
     <script type="text/x-handlebars" id="index">
-      <div class="panel panel-default">
-        <div class="panel-heading"><h4>La Liga Score</h4></div>
-        <div class="panel-body">
-            Bienvenido
-        </div><!--/panel-body-->
-      </div><!--/panel-->
+
+      <div class="col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>La Liga Score</h4></div>
+          <div class="panel-body">
+              Bienvenido
+          </div><!--/panel-body-->
+        </div><!--/panel-->
+           
+      </div><!--/col-->
+      <div class="col-md-6">
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><h4>Informaci&oacute;n</h4></div>
+          <div class="panel-body">
+              <strong>La Liga Score</strong><br>Una aplicaci&oacute;n para consultar los resultados de los partidos de cada jornada, y la clasificacion general de<br>La Liga.
+          </div>
+        </div>
+        
+      </div><!--/col-span-6-->
+
     </script>
 
-    <!--  - - - - - - - - - - - - - - - - - - - - - - - - loading - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!--  - - - - - - - - -  loading - - - - - - - - - - - -  -->
     <script type="text/x-handlebars" id="loading">
       <p>Cargando informaci&oacute;n...</p>
     </script>
 
-    <!--  - - - - - - - - - - - - - - - - - - - - - - - - countries - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!--  - - - - - - - - -  countries - - - - - - - - - - - -  -->
     <script type="text/x-handlebars" id="countries">
+
+    <div class="col-md-6">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Pa&iacute;ses</h4>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each item in model}}
+                <tr>
+                  <td>{{item.name}}</td>
+                  <td><a href="#" class="link-remove"><i class="glyphicon glyphicon-remove"></i></a></td>
+                </tr>
+              {{else}}
+                <tr>
+                  <td colspan="2">No hay resultados</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    
+    </div><!--/col-span-6-->
+
+    <div class="col-md-6">
+
       <div class="panel panel-default">
       <div class="panel-heading">
           <div class="panel-title">
-          <i class="glyphicon glyphicon-wrench pull-right"></i>
-          <h4>Nuevo Pa&iacute;s</h4>
+            <i class="glyphicon glyphicon-wrench pull-right"></i>
+            <h4>Nuevo Pa&iacute;s</h4>
           </div>
       </div>
       <div class="panel-body">
@@ -213,25 +248,48 @@
         </div><!--/panel-body-->
       </div><!--/panel-->
 
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each item in model}}
-            <tr><td>{{item.id}}</td><td>{{item.name}}</td></tr>
-          {{else}}
-            <tr><td colspan="2">No hay resultados</td></tr>
-          {{/each}}
-        </tbody>
-      </table>
+    </div><!--/col-->
     </script>
 
-    <!--  - - - - - - - - - - - - - - - - - - - - - - - - tournaments - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!--  - - - - - - - - -  tournaments - - - - - - - - - - - -  -->
     <script type="text/x-handlebars" id="tournaments">
+
+    <div class="col-md-6">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Torneos</h4>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Pa&iacute;s</th>
+                <th>Nombre</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each item in model.model}}
+                <tr>
+                  <td>{{item.country.name}}</td>
+                  <td>{{item.name}}</td>
+                  <td><a href="#" class="link-remove"><i class="glyphicon glyphicon-remove"></i></a></td>
+                </tr>
+              {{else}}
+                <tr>
+                  <td colspan="3">No hay resultados</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    
+    </div><!--/col-span-6-->
+
+    <div class="col-md-6">
+
       <div class="panel panel-default">
       <div class="panel-heading">
           <div class="panel-title">
@@ -246,17 +304,18 @@
           <div class="control-group">
             <label>Nombre</label>
             <div class="controls">
-              <input type="text" id="torneoNombre" class="form-control" placeholder="Indique un nombre">
+              <input type="text" id="tournamentName" class="form-control" placeholder="Indique un nombre">
             </div>
           </div>
                
           <div class="control-group">
             <label>Pa&iacute;s</label>
             <div class="controls">
-               <select id="torneoPais" class="form-control">
+               <select id="country" class="form-control">
                    <option value="-">Seleccione una opci&oacute;n</option>
-                   <option value="España">España</option>
-                   <option value="Venezuela">Venezuela</option>
+                   {{#each item in model.countries}}
+                     <option "{{bind-attr value=item.id}}">{{item.name}}</option>
+                   {{/each}}
                </select>
             </div>
           </div>    
@@ -264,7 +323,7 @@
           <div class="control-group">
               <label></label>
               <div class="controls">
-              <button type="button" id="torneoBtnSave" class="btn btn-primary">
+              <button type="button" id="tournamentBtnSave" class="btn btn-primary">
                 Guardar
               </button>
               </div>
@@ -274,10 +333,133 @@
       
         </div><!--/panel-body-->
       </div><!--/panel-->
+
+    </div><!--/col-span-6-->
     </script>
 
-    <!--  - - - - - - - - - - - - - - - - - - - - - - - - teams - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!--  - - - - - - - - -  editions - - - - - - - - - - - -  -->
+    <script type="text/x-handlebars" id="editions">
+
+    <div class="col-md-7">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Ediciones</h4>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Pa&iacute;s</th>
+                <th>Torneo</th>
+                <th>Nombre</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each item in model}}
+                <tr>
+                  <td>{{item.tournament.country.name}}</td>
+                  <td>{{item.tournament.name}}</td>
+                  <td>{{item.name}}</td>
+                  <td><a href="#" class="link-remove"><i class="glyphicon glyphicon-remove"></i></a></td>
+                </tr>
+              {{else}}
+                <tr>
+                  <td colspan="4">No hay resultados</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    
+    </div><!--/col-span-7-->
+
+    <div class="col-md-5">
+
+      <div class="panel panel-default">
+      <div class="panel-heading">
+          <div class="panel-title">
+          <i class="glyphicon glyphicon-wrench pull-right"></i>
+          <h4>Nueva Edici&oacute;n</h4>
+          </div>
+      </div>
+      <div class="panel-body">
+
+        <form class="form form-vertical">
+         
+          <div class="control-group">
+            <label>Nombre</label>
+            <div class="controls">
+              <input type="text" id="tournamentName" class="form-control" placeholder="Indique un nombre">
+            </div>
+          </div>  
+          
+          <div class="control-group">
+              <label></label>
+              <div class="controls">
+              <button type="button" id="tournamentBtnSave" class="btn btn-primary">
+                Guardar
+              </button>
+              </div>
+          </div>   
+          
+        </form>
+      
+        </div><!--/panel-body-->
+      </div><!--/panel-->
+
+    </div><!--/col-span-5-->
+    </script>
+
+    <!--  - - - - - - - - -  teams - - - - - - - - - - - -  -->
     <script type="text/x-handlebars" id="teams">
+
+    <div class="col-md-8">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Equipos</h4>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Escudo</th>
+                <th>Nombre</th>
+                <th>Abreviaci&oacute;n</th>
+                <th>Pa&iacute;s</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each item in model}}
+                <tr>
+                  <td>
+                    <img {{bind-attr src=item.logourl}} 
+                    {{bind-attr title=item.name}} 
+                    {{bind-attr alt=item.name}} height="40px" />
+                  </td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.nameshort}}</td>
+                  <td>{{item.country.name}}</td>
+                  <td><a href="#" class="link-remove"><i class="glyphicon glyphicon-remove"></i></a></td>
+                </tr>
+              {{else}}
+                <tr>
+                  <td colspan="4">No hay resultados</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    
+    </div><!--/col-span-8-->
+
+    <div class="col-md-4">
+
       <div class="panel panel-default">
 
         <div class="panel-heading">
@@ -294,29 +476,28 @@
             <div class="control-group">
               <label>Nombre completo</label>
               <div class="controls">
-                <input type="text" id="equipoNombreCompleto" class="form-control" placeholder="Indique el nombre completo">
+                <input type="text" id="teamName" class="form-control" placeholder="Indique el nombre completo">
               </div>
             </div>
 
             <div class="control-group">
               <label>Abreviaci&oacute;n</label>
               <div class="controls">
-                <input type="text" id="equipoNombreCorto" class="form-control" placeholder="Indique un abreviaci&oacute;n">
+                <input type="text" id="teamNameShort" class="form-control" placeholder="Indique un abreviaci&oacute;n">
               </div>
             </div>
 
             <div class="control-group">
               <label>URL del escudo</label>
               <div class="controls">
-                <input type="text" id="equipoUrlEscudo" class="form-control" placeholder="Indique la url de la imagen del escudo">
+                <input type="text" id="teamUrl" class="form-control" placeholder="Indique la url del escudo">
               </div>
             </div>
                     
-            
             <div class="control-group">
                 <label></label>
                 <div class="controls">
-                <button type="button" id="equipoBtnSave" class="btn btn-primary">
+                <button type="button" id="teamBtnSave" class="btn btn-primary">
                   Guardar
                 </button>
                 </div>
@@ -326,9 +507,11 @@
       
         </div><!--/panel-body-->
       </div><!--/panel-->
+
+    </div><!--/col-span-4-->
     </script>
 
-<!--  - - - - - - - - - - - - - - - - - - - - - - - - scripts references - - - - - - - - - - - - - - - - - - - - - - - -  -->
+<!--  - - - - - - - - -  scripts- - - - - - - - - - - - - - - - - -  -->
 <script src="js/libs/jquery.min.2.0.2.js"></script>
 <script src="js/libs/bootstrap.min.js"></script>
 <script src="js/libs/scripts.js"></script>
@@ -340,6 +523,10 @@
 
 <script src="js/app.js"></script>
 <script src="js/models/country.js"></script>
+<script src="js/models/edition.js"></script>
+<script src="js/models/match.js"></script>
+<script src="js/models/team.js"></script>
+<script src="js/models/tournament.js"></script>
 <script src="js/router.js"></script>
 <script src="js/controllers.js"></script>
 </body>

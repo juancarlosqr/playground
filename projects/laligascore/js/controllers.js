@@ -4,8 +4,7 @@ LigaScore.CountriesController = Ember.Controller.extend({
             if ( this.get('countryName').length > 0 )
             {
                 this.store.createRecord('country', {
-                  name: this.get('countryName'),
-                  id: 'null'
+                  name: this.get('countryName')
                 });
                 this.set('countryName','');
             }
