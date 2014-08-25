@@ -3,9 +3,16 @@ linux cheat sheet
 ========================================================================
 ------------------------------------------------------------------------
 linux 
+
+# listening services 
 sudo netstat -lptu
 sudo netstat -tulpn
+
+# find process by pid
 ps aux | grep {pid}
+
+# untar tgz files
+tar zxvf {file}.tgz
 
 ------------------------------------------------------------------------
 apache
@@ -81,7 +88,9 @@ git init
 git remote add origin <url>
 git clone <url>
 git checkout <branch>
-git branch
+git branch <branch>
+# delete branch locally
+git branch -d <branch>
 git merge <branch>
 git pull origin <branch>
 git push origin <branch>
@@ -119,6 +128,10 @@ bira
 ------------------------------------------------------------------------
 wget
 
+# download single file
+wget {file}
+
+# download entire site
 wget --no-parent -r -p -U Mozilla http://wp-desk.com/lovinflat/
 
 ------------------------------------------------------------------------
