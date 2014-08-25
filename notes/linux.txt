@@ -131,4 +131,17 @@ sudo lsof -i -n -P | grep LISTEN
 Killing processes
 sudo kill -9 {pid}
 
+------------------------------------------------------------------------
+Node
 
+# install
+npm install -g <package>
+sudo npm install grunt --save-dev
+npm install
+
+# uninstall
+npm uninstall <package>
+npm uninstall -g <package>
+sudo npm uninstall <package>
+sudo npm uninstall -g <package>
+npm -g rm <package>
