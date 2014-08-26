@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML5 Tester</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- custom styles -->
+    <link href="css/app.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="img/html5.ico">
+  </head>
+  <body>
+  <script type="text/x-handlebars" id="application">
+    <div class="container">
+      <div class="text-center">
+        <img src="img/logo.svg" class="logo" width="128" alt="HTML5!">
+      </div>
+      <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            {{#link-to "index" class="navbar-brand"}}HTML5 Tester{{/link-to}}
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>{{#link-to "index"}}Home{{/link-to}}</li>
+              <li>{{#link-to "tester"}}Features Test{{/link-to}}</li>
+              <li>{{#link-to "show"}}HTML5 in action{{/link-to}}</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>{{#link-to "docs"}}Docs{{/link-to}}</li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Get in touch <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="https://twitter.com/juancarlosqr" target="_blank">Twiiter</a></li>
+                  <li><a href="https://github.com/juancarlosqr" target="_blank">Github</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      
+      {{outlet}}
+
+    </div>
+    </script>
+
+    <script type="text/x-handlebars" id="index">
+      <div class="jumbotron">
+        <h1>HTML5 Tester</h1>
+        <p>This project is a quick exercise to test HTML5 support in the visiting browser. Here i test things like localStorage, web workers, sockets, geolocation, canvas, svg, video, audio, and new input types such as email, url, color, date, month, tel. CSS3 support test is upcoming.</p>
+        <p>
+          {{#link-to "show" class="btn btn-lg btn-primary" role="button"}}HTML5 in action »{{/link-to}}
+        </p>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" id="tester">
+      <h3>Features Test</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Supported</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model}}
+            <tr>
+              <td>{{name}}</td>
+              <td><span {{bind-attr class="resultClass"}}>{{supported}}</span></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </script>
+
+    <script type="text/x-handlebars" id="show">
+      <h3>HTML5 in action</h3>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>SVG inline</h3>
+          <p>A nice orange circle</p>
+          <svg id="circle" height="60" width="60" xmlns="http://www.w3.org/2000/svg">
+            <circle id="orangecircle" cx="30" cy="30" r="30" fill="orange" />
+          </svg>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" id="docs">
+      <h3>Documentation</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <ul>
+            {{#each model}}
+            <li class="list-unstyled">
+              <a {{bind-attr href="text"}} target="_blank">{{text}}</a>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <!-- Ember App -->
+    <script src="js/vendor/handlebars-1.1.2.js"></script>
+    <script src="js/vendor/ember-1.6.1.js"></script>
+    <script src="js/vendor/ember-data.js"></script>
+    <!-- Modernizr -->
+    <script src="js/vendor/modernizr.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
