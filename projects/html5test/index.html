@@ -90,7 +90,13 @@
           {{#each model}}
             <tr>
               <td>{{name}}</td>
-              <td><span {{bind-attr class="resultClass"}}>{{supported}}</span></td>
+              <td>
+                {{#if supported}}
+                  <span class="label label-success">{{supported}}</span>
+                {{else}}
+                  <span class="label label-danger">{{supported}}</span>
+                {{/if}}
+              </td>
             </tr>
           {{/each}}
         </tbody>
