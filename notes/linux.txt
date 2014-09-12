@@ -14,6 +14,11 @@ ps aux | grep {pid}
 # untar tgz files
 tar zxvf {file}.tgz
 
+# reload terminal
+source ~/.zshrc
+source ~/.bash_profile
+source ~/.bashrc
+
 ------------------------------------------------------------------------
 apache
 
