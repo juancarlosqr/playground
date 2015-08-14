@@ -1,0 +1,17 @@
+<table class="table">
+  <caption class="text-left">
+    <h4>{{ title }}</h4>
+  </caption>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="scotch in scotches">
+      <td>{{ scotch.name }}</td>
+      <td>{{ scotch.price | currency }}</td>
+    </tr>
+  </tbody>
+</table>
