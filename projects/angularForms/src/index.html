@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GREY | Forms</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="vendor/css/bootstrap-flat.min.css" />
+  <link rel="stylesheet" href="dist/css/main.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand logo-grey" href="/"></a>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li><a href="/">U.S. Dollar wire request form</a></li>
+          <li><a href="/">Foreign currency wire request form</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+  <div class="container">
+    <div id="app-container" ng-cloak ng-controller="MainController" style="display:none;">
+      <form name="wiredForm" id="wiredForm" ng-submit="wiredFormSubmit()" novalidate>
+        <ng-include src="'dist/html/form.html'"></ng-include>
+      </form>
+    </div>
+    <div id="spinner-container" class="text-center">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+      <div><p><em><small>Wait a moment, the page is loading...</small></em></p></div>
+    </div>
+    <div id="error-container" class="text-center" style="display:none;">
+      <p><img src="logo-grey.png"></p>
+      <p class="text-danger">There was an error loading the requested page.</p>
+      <p class="small">Try to refresh the page. The problem may be temporary</p>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row footer">
+      <div class="col-sm-2 col-sm-offset-2">
+        <img src="logo-grey.png">
+      </div>
+      <div class="col-sm-2 col-sm-offset-4">
+        <ul class="list-unstyled">
+          <li>
+            <h5>GREY SOCIAL</h5>
+          </li>
+          <li>
+            <a title="Facebook" href="https://www.facebook.com/GreyNewYork" target="_blank">
+              <img class="footer-social-icons" src="dist/img/icon-footer-facebook.png">Facebook
+            </a>
+          </li>
+          <li>
+            <a title="Twitter" href="https://twitter.com/greygravy" target="_blank">
+              <img class="footer-social-icons" src="dist/img/icon-footer-twitter.png">Twitter
+            </a>
+          </li>
+          <li>
+            <a title="LinkedIn" href="https://www.linkedin.com/company/grey-group" target="_blank">
+              <img class="footer-social-icons" src="dist/img/icon-footer-linkedin.png">LinkedIn
+            </a>
+          </li>
+          <li>
+            <a title="YouTube" href="https://www.youtube.com/user/greygroup" target="_blank">
+              <img class="footer-social-icons" src="dist/img/icon-footer-youtube.png">YouTube
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    // Data generated in the server
+    var GREY_DATA = {
+      values: {
+        usWired: true,
+        title: 'U.S. Dollar currency wired form',
+        requestId: 'US101'
+      },
+      source: {
+        offices: ['New York', 'London', 'Madrid', 'Tokyo', 'Berlin', 'Sydney', 'Buenos Aires'],
+        jobs: ['Designer', 'Media Manager', 'Developer', 'Manager', 'Consultant', 'Lawyer']
+      }
+    };
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/script.js/2.5.7/script.min.js"></script>
+  <script>
+    if(typeof $script != 'undefined' && typeof jQuery != 'undefined') {
+      $script('//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js', function() {
+        $script([
+          '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-messages.min.js',
+          '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js',
+          '//cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js',
+          '//cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.min.js'
+        ], function () {
+          $script(['dist/js/main.js'], function() {
+            angular.bootstrap(document, ['greyForms']);
+            jQuery('#spinner-container').fadeOut('slow', function () {
+              jQuery('#app-container').fadeIn('slow');
+            });
+          });
+        });
+      });
+    } else {
+      document.getElementById('error-container').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

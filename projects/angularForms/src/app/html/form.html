@@ -1,0 +1,482 @@
+<!-- Title -->
+<div class="row">
+    <h2>{{model.data.title}}</h2>
+</div>
+<div class="row">
+    <div class="line"></div>
+</div>
+<div class="line-space"></div>
+<!-- Request Id and Date -->
+<div class="row">
+    <!-- WIRE REQUEST ID -->
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">{{model.data.requestId.label}}:</label>
+            <div class="col-sm-9">
+                <p class="form-control-static">{{model.data.requestId.value}}</p>
+            </div>
+        </div>
+        <!-- DATE -->
+        <div class="form-group" ng-class="{ 'has-error' : wiredForm.requestDate.$invalid && wiredForm.requestDate.$touched }">
+            <label class="col-sm-3 control-label" for="requestDate">{{model.data.requestDate.label}}:</label>
+            <div class="col-sm-9">
+                <input type="text" name="requestDate" id="requestDate" class="form-control"
+                       datepicker-popup="{{model.dateOptions.formatInput}}"
+                       show-weeks="{{model.dateOptions.showWeeks}}"
+                       is-open="requestDateOpen"
+                       ng-click="requestDateOpen = true"
+                       close-text="Close"
+                       ng-model="model.data.requestDate.value" required>
+                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                <div class="errors-block" ng-messages="wiredForm.requestDate.$error" ng-show="wiredForm.requestDate.$touched">
+                    <div ng-messages-include="dist/html/messages.html"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Prepared by -->
+<div class="row form-horizontal">
+    <h3>{{model.headlines.prepared}}</h3>
+    <!-- Name -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.name.$invalid && wiredForm.name.$touched }">
+        <label class="col-sm-3 control-label" for="name">
+            {{model.data.name.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="name" id="name" class="form-control"
+                ng-model="model.data.name.value" required>
+            <div class="errors-block" ng-messages="wiredForm.name.$error" ng-show="wiredForm.name.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Signature -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.signature.$invalid && wiredForm.signature.$touched }">
+        <label class="col-sm-3 control-label" for="signature">
+            {{model.data.signature.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="signature" id="signature" class="form-control"
+                ng-model="model.data.signature.value" required>
+            <div class="errors-block" ng-messages="wiredForm.signature.$error" ng-show="wiredForm.signature.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Telephone -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.telephone.$invalid && wiredForm.telephone.$touched }">
+        <label class="col-sm-3 control-label" for="telephone">
+            {{model.data.telephone.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="telephone" id="telephone" class="form-control"
+                ng-model="model.data.telephone.value" required>
+            <div class="errors-block" ng-messages="wiredForm.telephone.$error" ng-show="wiredForm.telephone.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Reason for payment -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.reasonforPayment.$invalid && wiredForm.reasonforPayment.$touched }">
+        <label class="col-sm-3 control-label" for="reasonforPayment">
+            {{model.data.reasonforPayment.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <textarea name="reasonforPayment" id="reasonforPayment" class="form-control" rows="4" ng-model="model.data.reasonforPayment.value" maxlength="{{model.data.reasonforPayment.max}}" 
+                required ng-maxlength="{{model.data.reasonforPayment.max}}"></textarea>
+            <div class="errors-block" ng-messages="wiredForm.reasonforPayment.$error" ng-show="wiredForm.reasonforPayment.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+            <span class="help-block">{{model.data.reasonforPayment.help}}</span>
+        </div>
+    </div>
+</div>
+<!-- Debit Account -->
+<div class="row form-horizontal">
+    <h3>{{model.headlines.debit}}</h3>
+    <!-- Bank Name -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{model.data.debitBank.label}}:</label>
+        <div class="col-sm-9">
+            <p class="form-control-static">{{model.data.debitBank.value}}</p>
+        </div>
+    </div>
+    <!-- Company Name -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{model.data.debitCompany.label}}:</label>
+        <div class="col-sm-9">
+            <p class="form-control-static">{{model.data.debitCompany.value}}</p>
+        </div>
+    </div>
+    <!-- Account Name -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label">{{model.data.debitAccount.label}}:</label>
+        <div class="col-sm-9">
+            <p class="form-control-static">{{model.data.debitAccount.value}}</p>
+        </div>
+    </div>
+    <!-- Currency Name -->
+    <div class="form-group" ng-show="!model.data.usWired" 
+        ng-class="{ 'has-error' : wiredForm.currency.$invalid && wiredForm.currency.$touched }">
+        <label class="col-sm-3 control-label">
+            {{model.data.currency.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="currency" class="form-control" 
+                ng-model="model.data.currency.value" ng-required="!model.data.usWired">
+            <div class="errors-block" ng-messages="wiredForm.currency.$error" ng-show="wiredForm.currency.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Amount -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.amount.$invalid && wiredForm.amount.$touched }">
+        <label class="col-sm-3 control-label" for="amount">
+            {{model.data.amount.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="amount" class="form-control" ng-model="model.data.amount.value" format-money required>
+            <div class="errors-block" ng-messages="wiredForm.amount.$error" ng-show="wiredForm.amount.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Amount in words -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.amountWords.$invalid && wiredForm.amountWords.$touched }">
+        <label class="col-sm-3 control-label" for="amountWords">
+            {{model.data.amountWords.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="amountWords" id="amountWords" class="form-control"
+                ng-model="model.data.amountWords.value" required>
+            <div class="errors-block" ng-messages="wiredForm.amountWords.$error" ng-show="wiredForm.amountWords.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bank Information -->
+<div class="row form-horizontal">
+    <h3>{{model.headlines.bank}}</h3>
+    <!-- Account Name -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.accountName.$invalid && wiredForm.accountName.$touched }">
+        <label class="col-sm-3 control-label" for="accountName">
+            {{model.data.accountName.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="accountName" id="accountName" class="form-control"
+                ng-model="model.data.accountName.value" required>
+            <div class="errors-block" ng-messages="wiredForm.accountName.$error" ng-show="wiredForm.accountName.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Account Number -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.accountNumber.$invalid && wiredForm.accountNumber.$touched }">
+        <label class="col-sm-3 control-label" for="accountNumber">
+            {{model.data.accountNumber.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="accountNumber" id="accountNumber" class="form-control"
+                ng-model="model.data.accountNumber.value" required>
+            <div class="errors-block" ng-messages="wiredForm.accountNumber.$error" ng-show="wiredForm.accountNumber.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Bank Name -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.bankName.$invalid && wiredForm.bankName.$touched }">
+        <label class="col-sm-3 control-label" for="bankName">
+            {{model.data.bankName.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="bankName" id="bankName" class="form-control"
+                ng-model="model.data.bankName.value" required>
+            <div class="errors-block" ng-messages="wiredForm.bankName.$error" ng-show="wiredForm.bankName.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Address -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.address.$invalid && wiredForm.address.$touched }">
+        <label class="col-sm-3 control-label" for="address">
+            {{model.data.address.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="address" id="address" class="form-control"
+                ng-model="model.data.address.value" required>
+            <div class="errors-block" ng-messages="wiredForm.address.$error" ng-show="wiredForm.address.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- City and Country -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.cityAndCountry.$invalid && wiredForm.cityAndCountry.$touched }">
+        <label class="col-sm-3 control-label" for="cityAndCountry">
+            {{model.data.cityAndCountry.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="cityAndCountry" id="cityAndCountry" class="form-control"
+                ng-model="model.data.cityAndCountry.value" required>
+            <div class="errors-block" ng-messages="wiredForm.cityAndCountry.$error" ng-show="wiredForm.cityAndCountry.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ABA -->
+    <div class="form-group" ng-show="model.data.usWired" ng-class="{ 'has-error' : wiredForm.aba.$invalid && wiredForm.aba.$touched }">
+        <label class="col-sm-3 control-label" for="aba">
+            {{model.data.aba.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="aba" id="aba" class="form-control"
+                ng-model="model.data.aba.value" ng-required="model.data.usWired">
+            <div class="errors-block" ng-messages="wiredForm.aba.$error" ng-show="wiredForm.aba.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Swift Code -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.swiftCode.$invalid && wiredForm.swiftCode.$touched }">
+        <label class="col-sm-3 control-label" for="swiftCode">
+            {{model.data.swiftCode.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="swiftCode" id="swiftCode" class="form-control"
+                ng-model="model.data.swiftCode.value" required>
+            <div class="errors-block" ng-messages="wiredForm.swiftCode.$error" ng-show="wiredForm.swiftCode.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- IBAN -->
+    <div class="form-group" ng-class="{ 'has-error' : wiredForm.iban.$invalid && wiredForm.iban.$touched }">
+        <label class="col-sm-3 control-label" for="iban">
+            {{model.data.iban.label}}<span class="required">*</span>:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="iban" id="iban" class="form-control"
+                ng-model="model.data.iban.value" required>
+            <div class="errors-block" ng-messages="wiredForm.iban.$error" ng-show="wiredForm.iban.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Other Information -->
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="otherInformation">
+            {{model.data.otherInformation.label}}:
+        </label>
+        <div class="col-sm-9">
+            <input type="text" name="otherInformation" id="otherInformation" class="form-control"
+                ng-model="model.data.otherInformation.value">
+        </div>
+    </div>
+</div>
+<!-- Extra Info inputs -->
+<div class="row form-horizontal seven-cols">
+    <div ng-repeat="dataInfo in model.data.extraInfo" class="form-group">
+        <ng-form name="extraInfoForm_{{$index}}">
+          <div class="col-sm-12 hide" ng-show="extraInfoForm_{{$index}}.$error.required">
+            <small><em>GL # or Job # are required</em></small>
+          </div>
+          <!-- office -->
+          <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">
+            <label class="control-label">{{model.extrainfolabels.office}}:</label>
+            <input type="text" name="office_{{$index}}" class="form-control" ng-model="dataInfo.office"
+                typeahead="o for o in offices | filter:$viewValue | limitTo:10">
+          </div>
+          <!-- gl -->
+          <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" ng-class="{ 'has-error' : extraInfoForm_{{$index}}.gl_{{$index}}.$invalid && extraInfoForm_{{$index}}.gl_{{$index}}.$dirty }">
+            <label class="control-label">{{model.extrainfolabels.gl}}:</label>
+            <input type="text" name="gl_{{$index}}" class="form-control"
+                ng-model="dataInfo.gl" 
+                ng-pattern="/^([S])([B|E])([0-9]){12}$/"
+                ng-required="!dataInfo.job">
+            <div class="errors-block small" ng-show="extraInfoForm_{{$index}}.gl_{{$index}}.$dirty"
+                ng-messages="wiredForm['extraInfoForm_' + $index]['gl_' + $index].$error">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+          </div>
+          <!-- job -->
+          <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" ng-class="{ 'has-error' : extraInfoForm_{{$index}}.job_{{$index}}.$invalid && (extraInfoForm_{{$index}}.job_{{$index}}.$dirty || extraInfoForm_{{$index}}.workCode_{{$index}}.$dirty ) }">
+            <label class="control-label">{{model.extrainfolabels.job}}:</label>
+            <input type="text" name="job_{{$index}}" class="form-control" 
+              ng-model="dataInfo.job" ng-required="!dataInfo.gl"
+              typeahead="j for j in jobs | filter:$viewValue | limitTo:10">
+            <div class="errors-block small" 
+                ng-show="extraInfoForm_{{$index}}.workCode_{{$index}}.$dirty || extraInfoForm_{{$index}}.job_{{$index}}.$dirty"
+                ng-messages="wiredForm['extraInfoForm_' + $index]['job_' + $index].$error">
+              <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+          </div>
+          <!-- workCode -->
+          <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6" ng-class="{ 'has-error' : extraInfoForm_{{$index}}.workCode_{{$index}}.$invalid && (extraInfoForm_{{$index}}.workCode_{{$index}}.$dirty || extraInfoForm_{{$index}}.job_{{$index}}.$dirty) }">
+            <label class="control-label">{{model.extrainfolabels.workCode}}:</label>
+            <input type="text" name="workCode_{{$index}}" class="form-control"
+              ng-model="dataInfo.workCode" ng-required="!dataInfo.gl">
+              <div class="errors-block small" 
+                ng-show="extraInfoForm_{{$index}}.job_{{$index}}.$dirty || extraInfoForm_{{$index}}.workCode_{{$index}}.$dirty"
+                ng-messages="wiredForm['extraInfoForm_' + $index]['workCode_' + $index].$error">
+                <div ng-messages-include="dist/html/messages.html"></div>
+              </div>
+          </div>
+          <!-- amount -->
+          <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">
+            <label class="control-label">{{model.extrainfolabels.amount}}:</label>
+            <input type="text" name="amount" class="form-control"
+              format-money ng-model="dataInfo.amount">
+          </div>
+          <!-- invoice -->
+          <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">
+            <label class="control-label">{{model.extrainfolabels.invoice}}:</label>
+            <input type="text" name="invoice" class="form-control" 
+              ng-model="dataInfo.invoice">
+          </div>
+          <!-- po -->
+          <div class="col-lg-1 col-md-3 col-sm-4 col-xs-12">
+            <label class="control-label">{{model.extrainfolabels.po}}:</label>
+            <input type="text" name="po" class="form-control" 
+              ng-model="dataInfo.po">
+          </div>
+        </ng-form>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12 text-right">
+        <button type="button" ng-click="addExtraInfoLine()" class="btn btn-dark">
+          Add more
+        </button>
+      </div>
+    </div>
+</div>
+<div class="line-space"></div>
+<div class="line-space"></div>
+<div class="line-space"></div>
+<!-- Signatures -->
+<div class="row">
+    <div class="col-sm-4">
+        <div class="row">
+            <p class="line"></p>
+        </div>
+        <div class="row form-horizontal" ng-class="{ 'has-error' : wiredForm.authOneDate.$invalid && wiredForm.authOneDate.$touched }">
+            <div class="form-group">
+                <label class="col-sm-6 control-label">{{model.data.authOne.label}}:</label>
+                <div class="col-sm-6">
+                    <input type="text" name="authOneDate" class="form-control pull-right"
+                       datepicker-popup="{{model.dateOptions.formatInput}}"
+                       show-weeks="{{model.dateOptions.showWeeks}}"
+                       is-open="authOneDateOpen"
+                       ng-click="authOneDateOpen = true"
+                       close-text="Close"
+                       ng-model="model.data.authOne.value" required>
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="errors-block text-right" ng-messages="wiredForm.authOneDate.$error" ng-show="wiredForm.authOneDate.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 col-sm-offset-4 text-right">
+        <div class="row">
+            <p class="line"></p>
+        </div>
+        <div class="row form-horizontal" ng-class="{ 'has-error' : wiredForm.authTwoDate.$invalid && wiredForm.authTwoDate.$touched }">
+            <div class="form-group">
+                <label class="col-sm-6 control-label">{{model.data.authTwo.label}}:</label>
+                <div class="col-sm-6">
+                    <input type="text" name="authTwoDate" class="form-control pull-right"
+                       datepicker-popup="{{model.dateOptions.formatInput}}"
+                       show-weeks="{{model.dateOptions.showWeeks}}"
+                       is-open="authTwoDateOpen"
+                       ng-click="authTwoDateOpen = true"
+                       close-text="Close"
+                       ng-model="model.data.authTwo.value" required>
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="errors-block" ng-messages="wiredForm.authTwoDate.$error" ng-show="wiredForm.authTwoDate.$touched">
+                <div ng-messages-include="dist/html/messages.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="line-space"></div>
+<div class="line-space"></div>
+<div class="row">
+    <p>{{model.footnotes.below}}</p>
+</div>
+<div class="row">
+    <div class="line"></div>
+</div>
+<div class="line-space"></div>
+<div class="row">
+    <p>{{model.footnotes.trade}}</p>
+</div>
+<div class="line-space"></div>
+<!-- Trade information -->
+<div class="row">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <p>{{model.footnotes.usd}}</p>
+                    </div>
+                    <div class="col-sm-10">
+                        <p class="line">&nbsp;</p>
+                    </div>
+                </div>
+                <div class="line-space"></div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <p>{{model.footnotes.rate}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p class="line">&nbsp;</p>
+                    </div>
+                    <div class="col-sm-2 text-right">
+                        <p>{{model.footnotes.date}}</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="line">&nbsp;</p>
+                    </div>
+                </div>
+                <div class="line-space"></div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <p>{{model.footnotes.tradeId}}</p>
+                    </div>
+                    <div class="col-sm-10">
+                        <p class="line">&nbsp;</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <p>{{model.footnotes.supply}}</p>
+</div>
+<div class="line-space"></div>
+<!-- Error Box -->
+<div class="row" ng-show="errorBoxVisible">
+    <div class="alert alert-danger" role="alert">
+        <p><strong>Error</strong></p>
+        <p ng-repeat="msg in errorMessages">{{msg}}</p>
+    </div>
+</div>
+<!-- Button and Footer -->
+<div class="row">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="text-center">
+                <button type="submit" class="btn btn-danger">
+                    Print
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="line-space"></div>
