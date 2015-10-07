@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Github Search</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div id="app" style="display:none;" class="row" ng-cloak ng-controller="MainController">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Github Search</h1>
+            <form class="form-inline">
+              <div class="form-group">
+                <input type="text" class="form-control" ng-model="model.user" placeholder="Github username">
+                <button type="submit" class="btn" ng-click="search()">Search</button>
+                <button class="btn btn-info" ng-click="clear()">Clear</button>
+                <button class="btn btn-danger" ng-click="debugging()">Debug</button>
+              </div>
+            </form>
+            <p><small>{{model.basic_error}}</small></p>
+          </div>
+        </div>
+        <div id="details" class="row" ng-show="model.basic">
+          <div class="col-md-2">
+            <img ng-src="{{model.basic.avatar_url}}" title="{{model.basic.name}}" class="img-responsive">
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+              <h2>{{model.basic.name}}</h2>
+              <p><a href="{{model.basic.html_url}}" target="_blank">{{model.basic.login}}</a></p>
+              <p><b>Location</b> {{model.basic.location}}</p>
+              <p><b>Company</b> {{model.basic.company}}</p>
+            </div>
+            <div class="row" ng-show="model.repos">
+              <h3>Repositories</h3>
+              <div><small>{{model.repo_error}}</small></div>
+              <div ng-repeat="repo in model.repos">
+                <p><a href="{{repo.html_url}}" target="_blank">{{repo.full_name}}</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" ng-show="debug">
+          <div class="col-md-12">
+          <pre>{{model | json}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/script.js/2.5.8/script.min.js"></script>
+  <script>
+    $script([
+        '//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js'
+      ], function() {
+      $script([
+        'mainController.js',
+        'githubService.js'
+        ], function() {
+          angular.module('githubApp', ['githubApp.mainController', 'githubApp.githubService']);
+          angular.bootstrap(document, ['githubApp']);
+          document.getElementById('app').style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>
