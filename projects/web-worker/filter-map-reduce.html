@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FilterMapReduce</title>
+</head>
+<body>
+<script type="text/javascript">
+  var animals = [
+    { name: 'Waffles',  type: 'dog', age: 12 },
+    { name: 'Fluffy',   type: 'cat', age: 14 },
+    { name: 'Spelunky', type: 'dog', age: 4  },
+    { name: 'Hank',     type: 'dog', age: 11 },
+  ];
+
+  var printNames = function (a) {
+    return a.name;
+  };
+
+  var totalDogYears = animals
+    .filter(function(a) {
+      return a.type === 'dog';
+    })
+    .map(function(a) {
+      return a.age;
+    })
+    .reduce(function(prev, cur) {
+      return prev + cur;
+    }, 0);
+  // totalDogYears will be the integer 27 (Because Waffles 12 + Spelunky 4 + Hank 11)
+
+  console.log('Dog\'s names', animals.map(printNames));
+  console.log('Sum of ages is', totalDogYears);
+</script>
+</body>
+</html>
