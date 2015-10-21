@@ -2,18 +2,25 @@
 (function () {
   'use strict';
 
-  angular.module('greyForms', [
-    'ngMessages',
-    'ui.bootstrap',
-    'greyForms.controllerMain',
-    'greyForms.serviceFileModel',
-    'greyForms.serviceSaveFile',
-    'greyForms.directiveFormatMoney'
-  ]);
+  angular
+    .module('greyForms', [
+      'ngMessages',
+      'ui.bootstrap',
+      'greyForms.controllerMain',
+      'greyForms.serviceFileModel',
+      'greyForms.serviceSaveFile',
+      'greyForms.directiveFormatMoney'
+    ])
+    .config(Config);
 
   angular.module('greyForms.controllerMain', []).controller('MainController', MainController);
 
+  Config.$inject = ['$compileProvider'];
   MainController.$inject = ['$scope', 'fileModel', 'saveFile'];
+
+  function Config($compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
+  }
 
   function MainController($scope, fileModel, saveFile) {
     $scope.model = null;
