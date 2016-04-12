@@ -5,6 +5,7 @@ import React, {
 
 export default class Likes extends Component {
   render () {
+    // const { count } = this.props
     return (
       <div>
         <LikesNumber count={ this.props.count } />
