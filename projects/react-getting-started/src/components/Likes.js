@@ -6,11 +6,33 @@ import React, {
 export default class Likes extends Component {
   render () {
     return (
-      <p>{ this.props.count } likes</p>
+      <div>
+        <LikesNumber count={ this.props.count } />
+        <LikesComplete { ...this.props } />
+        <Comments message={ this.props.message } />
+      </div>
     )
   }
 }
 
 Likes.propTypes = {
-  count: PropTypes.number
+  count: PropTypes.number.isRequired,
+  message: PropTypes.string
 }
+
+Likes.defaultProps = {
+  message: 'Built with React JS'
+}
+
+/* Stateless components */
+const LikesNumber = ({ count }) => (
+  <p>{ count } likes</p>
+)
+
+const LikesComplete = ({ count }) => (
+  <p>{ `${ count } likes` }</p>
+)
+
+const Comments = ({ message }) => (
+  <p><strong>{ message }</strong></p>
+)
