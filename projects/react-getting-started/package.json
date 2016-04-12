@@ -2,11 +2,12 @@
   "name": "practice-react",
   "version": "1.0.0",
   "description": "ReactJS getting-started project",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "webpack -p",
     "serve": "http-server ./build",
-    "watch": "npm run serve & webpack -d --watch"
+    "dev": "webpack -d --watch",
+    "watch": "npm run serve & npm run dev"
   },
   "author": "Juan Carlos Quintero",
   "license": "MIT",
