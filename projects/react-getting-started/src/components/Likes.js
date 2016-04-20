@@ -4,13 +4,21 @@ import React, {
 } from 'react'
 
 export default class Likes extends Component {
+  componentWillUpdate (nextProps) {
+    console.log('componentsWillUpdate - nextProps', nextProps)
+  }
+
+  shouldComponentUpdate (nextProps) {
+    return (this.props.count !== nextProps.count || this.props.message !== nextProps.message)
+  }
+
   render () {
-    // const { count } = this.props
+    const { message } = this.props
+    console.log('rendered!', message)
     return (
       <div>
-        <LikesNumber count={ this.props.count } />
-        <LikesComplete { ...this.props } />
-        <Comments message={ this.props.message } />
+        <Title message={ message } />
+        <LikesNumber { ...this.props } />
       </div>
     )
   }
@@ -26,14 +34,10 @@ Likes.defaultProps = {
 }
 
 /* Stateless components */
-const LikesNumber = ({ count }) => (
-  <p>{ count } likes</p>
-)
-
-const LikesComplete = ({ count }) => (
-  <p>{ `${ count } likes` }</p>
-)
-
-const Comments = ({ message }) => (
+const Title = ({ message }) => (
   <p><strong>{ message }</strong></p>
+)
+
+const LikesNumber = ({ count }) => (
+  <p>{ `${ count } likes` }</p>
 )

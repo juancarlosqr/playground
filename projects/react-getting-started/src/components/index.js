@@ -22,7 +22,7 @@ export default class App extends React.Component {
         <h3>Customer Analytics</h3>
         <button onClick={ this.onLike }>I like this!</button>
         <Likes count={ this.state.likesCount } message={ this.state.message } />
-        <Likes count={ this.state.likesCount * 2 } />
+        <Likes count={ 1 } />
       </div>
     )
   }
