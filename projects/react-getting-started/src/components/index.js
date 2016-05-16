@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './Header'
 import Likes from './Likes'
 
 export default class App extends React.Component {
@@ -24,11 +25,12 @@ export default class App extends React.Component {
     return (
       <div>
         <h1>Dashboard</h1>
-        <h3>Customer Analytics</h3>
-        <button onClick={ this.onLike }>I like this!</button>
-        <button onClick={ this.onDislike }>I don't like this!</button>
+        <Header title='Customer Analytics' />
+        <button onClick={ this.onLike }>LIKE</button>
+        <button onClick={ this.onDislike }>DON'T LIKE</button>
         <Likes count={ this.state.likesCount } message={ this.state.message } />
         <Likes count={ 1 } />
+        <Header title='Sales Analytics' />
       </div>
     )
   }
