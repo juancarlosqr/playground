@@ -1,5 +1,4 @@
 -- http://www.androidhive.info/2012/05/how-to-connect-android-with-php-mysql/
--- http://devcode.la/
 
 CREATE TABLE IF NOT EXISTS `products`(
 	id int(11) PRIMARY KEY AUTO_INCREMENT,

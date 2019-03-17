@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="utf-8">
+    	<title>Send an Email via Mandrill</title>
+    </head>
+    <body>
+        <button id="send">Send Email</button>
+        <pre id="response"></pre>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://mandrillapp.com/api/docs/js/mandrill.js"></script>
+        <script>
+			// create a function to log the response from the Mandrill API
+			function mandrillAppHandleResponse(jsonResponse) {
+				var response = JSON.stringify(jsonResponse);
+				$('#response').text(response);
+				console.log(response);
+			}
+
+			function mandrillAppSendEmail() {
+				var MANDRILL_API_KEY = 'INSERT_VALID_MANDRILL_API_KEY_HERE'
+				// create a variable for the API call parameters
+				var params = {
+					"message": {
+						"from_email": "sender@example.com",
+						"to": [{"email": "receiver@example.com"}],
+						"subject": "Mandrill API is working!",
+						"html":  "<p>I'm learning the <a href='https://www.mandrill.com'>Mandrill</a> API at Codecademy.</p>",
+						"autotext": true,
+						"track_opens": true,
+						"track_clicks": true
+					}
+				};
+				// for sending plain-text emails define a text param
+				// var params = {
+				//     "message": {
+				//         ...
+				//         "text": "Mandrill API is working!"
+				//     }
+				// };
+
+				// create a new instance of the Mandrill class with your API key
+				var m = new mandrill.Mandrill(MANDRILL_API_KEY);
+				
+				// Send the email!
+				m.messages.send(params, mandrillAppHandleResponse, mandrillAppHandleResponse);
+			}
+			
+			$('#send').on('click', function (e) {
+				e.preventDefault();
+				mandrillAppSendEmail();
+			});
+        </script>
+    </body>
+</html>

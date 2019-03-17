@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="utf-8">
+    	<title>javascript</title>
+    </head>
+    <body>
+		<p>Open console</p>
+        <script>
+			console.log('literal');
+			var card = {
+				name: 'John',
+			};
+			var foo = Object.create(Object.prototype, {
+				bar: {
+					name:'John',
+				},
+			});
+			console.log(card.name); // -> John
+			console.log(foo); // -> undefined?
+
+			console.log('function');
+			var Person = function (name) {
+				this.name = name || 'Jane';
+				this.last = '';
+				this.full = function(){
+					return this.name + ' ' + this.last;
+				};
+			};
+			var jane = new Person();
+			console.log(jane.name); // -> Jane
+			var john = new Person('John');
+			console.log(john.name); // -> John
+			john.last = 'Doe';
+			console.log(john.full()); // -> John Doe
+
+			console.log('create from Object');
+			var Person = {
+				introduce: function(age) {
+					console.log( 'My name is ' + this.name + ' ' + this.last + ' (' + age + ' years old)');
+				}
+			};
+			john = Object.create(Person, {
+				'name': {
+					value: 'John',
+				},
+				'last': {
+					value: 'Doe',
+				},
+			});
+			john.introduce(26);
+        </script>
+    </body>
+</html>

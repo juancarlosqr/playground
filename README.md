@@ -1,4 +1,3 @@
-Playground
-==========
+# playground
 
-For testing new things only
+> to learn about new stuff
