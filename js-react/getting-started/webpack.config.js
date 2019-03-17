@@ -6,21 +6,25 @@ var BUILD = path.resolve(__dirname, 'build');
 var config = {
   entry: SRC + '/index.js',
   output: {
+    filename: 'bundle.js',
     path: BUILD,
-    filename: 'bundle.js'
+  },
+  devServer: {
+    contentBase: BUILD,
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js?/,
+        exclude: /(node_modules|bower_components)/,
         include: SRC,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015']
-        }
-      }
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
+      },
     ]
-  }
+  },
 };
 
 module.exports = config;
