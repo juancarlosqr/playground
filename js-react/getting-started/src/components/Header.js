@@ -1,15 +1,10 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
-function Header (props) {
-  return (
-    <div>
-      <h3>{ props.title }</h3>
-    </div>
-  )
-}
-
-Header.propTypes = {
-  title: PropTypes.string
-}
+const Header = () => (
+  <div>
+    <h1>Dashboard</h1>
+    <h2>Analytics</h2>
+  </div>
+)
 
 export default Header

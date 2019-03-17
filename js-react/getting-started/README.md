@@ -1,8 +1,16 @@
-# ReactJS getting-started project
+# ReactJS getting-started
 
 ## How to run
 
 ```
 npm install
-npm run watch
+
+# in first terminal
+npm run server
+
+# in second terminal
+npm run dev
+
+# build
+npm start
 ```

@@ -1,24 +1,28 @@
-import React, {
-  Component,
-  PropTypes
-} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-export default class Likes extends Component {
-  componentWillUpdate (nextProps) {
-    console.log('componentsWillUpdate - nextProps', nextProps)
+/* stateless component */
+const Title = ({ message }) => (
+  <p><strong>{ message }</strong></p>
+)
+
+class Likes extends React.Component {
+  componentWillUpdate(nextProps) {
+    console.log('nextProps', nextProps)
   }
 
-  shouldComponentUpdate (nextProps) {
-    return (this.props.count !== nextProps.count || this.props.message !== nextProps.message)
+  shouldComponentUpdate(nextProps) {
+    const { count, message } = this.props
+    return (count !== nextProps.count || message !== nextProps.message)
   }
 
-  render () {
-    const { message } = this.props
-    console.log('rendered!', message)
+  render() {
+    const { count, message } = this.props
+    console.log(message, 'is rendered!')
     return (
       <div>
-        <Title message={ message } />
-        <LikesNumber { ...this.props } />
+        <Title message={message} />
+        <p>{`${count} likes`}</p>
       </div>
     )
   }
@@ -26,18 +30,12 @@ export default class Likes extends Component {
 
 Likes.propTypes = {
   count: PropTypes.number.isRequired,
-  message: PropTypes.string
+  message: PropTypes.string,
 }
 
 Likes.defaultProps = {
-  message: 'Built with React JS'
+  count: 0,
+  message: 'Built with React JS',
 }
 
-/* Stateless components */
-const Title = ({ message }) => (
-  <p><strong>{ message }</strong></p>
-)
-
-const LikesNumber = ({ count }) => (
-  <p>{ `${ count } likes` }</p>
-)
+export default Likes
