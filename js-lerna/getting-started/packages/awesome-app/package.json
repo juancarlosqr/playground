@@ -1,0 +1,16 @@
+{
+  "name": "awesome-app",
+  "version": "1.0.0",
+  "description": "app",
+  "main": "index.js",
+  "author": "JC",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "button": "^1.0.0",
+    "header": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

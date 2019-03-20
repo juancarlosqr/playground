@@ -1,0 +1,12 @@
+{
+  "name": "header",
+  "version": "1.0.0",
+  "description": "header",
+  "main": "index.js",
+  "author": "JC",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "sillyname": "^0.1.0"
+  }
+}
