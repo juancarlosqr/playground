@@ -1,5 +1,8 @@
 {
   "name": "root",
   "private": true,
-  "devDependencies": {}
+  "devDependencies": {},
+  "scripts": {
+    "start": "lerna bootstrap --hoist"
+  }
 }
