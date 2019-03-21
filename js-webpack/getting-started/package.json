@@ -1,0 +1,20 @@
+{
+  "name": "getting-started",
+  "version": "1.0.0",
+  "description": "Webpack gettin-started",
+  "main": "bundle.js",
+  "private": true,
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --devtool eval --hot --progress --colors --content-base public",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "keywords": [],
+  "author": "Juan Carlos Quintero",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^0.23.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  }
+}

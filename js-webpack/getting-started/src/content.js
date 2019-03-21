@@ -1,0 +1,1 @@
+module.exports = "Webpack is working great! awesome...";
