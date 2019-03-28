@@ -1,0 +1,604 @@
+{
+  "beers": [
+    {
+      "brand": "Davok",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": true
+    },
+    {
+      "brand": "Chela Brandon",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Chela Brandon",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Chela Brandon",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Tremenda IPA",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "very high",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Maragata",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Maragata",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "PB",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "PB",
+      "color": "Red",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Cien doncellas rubias",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": true
+    },
+    {
+      "brand": "Cien doncellas castañas",
+      "color": "Blonde",
+      "alcohol": "low",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": true
+    },
+    {
+      "brand": "Cien doncellas coloradas",
+      "color": "Red",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": true
+    },
+    {
+      "brand": "Cien doncellas dulces",
+      "color": "Blonde",
+      "alcohol": "low",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": true
+    },
+    {
+      "brand": "MBH",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "MBH",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "MBH",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "very high",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "MBH",
+      "color": "Red",
+      "alcohol": "high",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "MBH",
+      "color": "Red",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "MBH",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Bremen",
+      "color": "Blonde",
+      "alcohol": "low",
+      "bitterness": "low",
+      "size": "1000 cc",
+      "draft": false
+    },
+    {
+      "brand": "Capitán Beer",
+      "color": "Amber",
+      "alcohol": "7,3%",
+      "bitterness": "high",
+      "size": 330,
+      "draft": false
+    },
+    {
+      "brand": "Capitán Beer",
+      "color": "Black",
+      "alcohol": "7.0%",
+      "bitterness": "medium",
+      "size": 330,
+      "draft": false
+    },
+    {
+      "brand": "Volcánica",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": true
+    },
+    {
+      "brand": "Capitán Beer",
+      "color": "Blonde",
+      "alcohol": "7,8%",
+      "bitterness": "medium",
+      "size": 330,
+      "draft": false
+    },
+    {
+      "brand": "Barbot",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Cabesas Bier - Sabotaje",
+      "color": "Black",
+      "alcohol": "high",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": true
+    },
+    {
+      "brand": "Cabesas Bier",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": true
+    },
+    {
+      "brand": "Cabesas Bier - Cabutiña",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Dharma Coffee Stout",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Dharma",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Dharma",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Buenas Costumbres Pale Ale Rubia",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Buenas Costumbres Pale Ale Roja",
+      "color": "Red",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Buenas Costumbres Pale Ale Negra",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Buenas Costumbres Pale Ale IPA",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Barbot Honey Beer",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Barbot",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Barbot Monastere Belgian Blond",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Barbot Old Strong Ale",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Cabesas Bier",
+      "color": "Red",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "500 cc",
+      "draft": true
+    },
+    {
+      "brand": "Barbot Marilyn Golden",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Barbot Mumbai IPA",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "high",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Bimba Brüder",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Barbot Sacramento Kölsch",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Barbot De Lobo Porter",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Barbot",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Barbot Thames Pale Ale",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Mastra",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "low",
+      "size": 330,
+      "draft": true
+    },
+    {
+      "brand": "Ariscona",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "660 cc",
+      "draft": true
+    },
+    {
+      "brand": "Ariscona",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "660 cc",
+      "draft": true
+    },
+    {
+      "brand": "Barbot Burton Bitter",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Bimba Brüder",
+      "color": "Red",
+      "alcohol": "low",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Bimba Brüder",
+      "color": "Blonde",
+      "alcohol": "low",
+      "bitterness": "low",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Bimba Brüder",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "660 cc",
+      "draft": false
+    },
+    {
+      "brand": "Bizarra",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "very high",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Bizarra",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Cabesas Bier - Atómica",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "very high",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Cabesas Bier - Bárbara",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Cabesas Bier",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": true
+    },
+    {
+      "brand": "Davok",
+      "color": "Red",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "500 cc",
+      "draft": true
+    },
+    {
+      "brand": "Davok",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "very high",
+      "size": "500 cc",
+      "draft": true
+    },
+    {
+      "brand": "Davok",
+      "color": "Blonde",
+      "alcohol": "very high",
+      "bitterness": "very high",
+      "size": "330 cc",
+      "draft": false
+    },
+    {
+      "brand": "Capitán Beer",
+      "color": "Blonde",
+      "alcohol": "6,5%",
+      "bitterness": "medium",
+      "size": 330,
+      "draft": false
+    },
+    {
+      "brand": "Volcánica",
+      "color": "Red",
+      "alcohol": "high",
+      "bitterness": "low",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Volcánica",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "very high",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Volcánica",
+      "color": "Black",
+      "alcohol": "very high",
+      "bitterness": "very high",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Volcánica",
+      "color": "Blonde",
+      "alcohol": "high",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": false
+    },
+    {
+      "brand": "Mastra",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "330 cc",
+      "draft": true
+    },
+    {
+      "brand": "Mastra",
+      "color": "Red",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "33o cc",
+      "draft": true
+    },
+    {
+      "brand": "Mastra",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "330 cc",
+      "draft": true
+    },
+    {
+      "brand": "Mastra",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Mastra",
+      "color": "Blonde",
+      "alcohol": "low",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Mastra",
+      "color": "Blonde",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Mastra",
+      "color": "Red",
+      "alcohol": "medium",
+      "bitterness": "low",
+      "size": "chopp",
+      "draft": true
+    },
+    {
+      "brand": "Davok",
+      "color": "Black",
+      "alcohol": "medium",
+      "bitterness": "medium",
+      "size": "500 cc",
+      "draft": false
+    }
+  ]
+}
