@@ -1,0 +1,40 @@
+<figure class="image is-128x128">
+  <img alt="profile_{{provider}}" src="{{user.profile_picture}}" class="is-rounded">
+</figure>
+<div class="container">
+  <h1 class="title">
+    {{user.full_name}}
+  </h1>
+  <h2 class="subtitle">
+    @{{user.username}}
+  </h2>
+  <p class="subtitle">
+    {{user.bio}}
+  </p>
+</div>
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Posts</p>
+      <p class="title">{{user.counts.media}}</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Followers</p>
+      <p class="title">{{user.counts.followed_by}}</p>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading">Following</p>
+      <p class="title">{{user.counts.follows}}</p>
+    </div>
+  </div>
+</nav>
+<a href="/logout" class="button is-light">
+  <span class="icon">
+    <i class="fas fa-arrow-left"></i>
+  </span>
+  <span>Sign Out</span>
+</a>

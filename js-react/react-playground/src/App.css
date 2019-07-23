@@ -1,0 +1,30 @@
+.App {
+  color: #fff;
+  margin: 2em auto;
+  max-width: 75%;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 45px;
+  width: 85px;
+  pointer-events: none;
+}
+.App-header h1 {
+  font-weight: 300;
+}
+.App-link {
+  color: #61dafb;
+  text-decoration: none;
+}
+.App-link:hover {
+  color: #37adce;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

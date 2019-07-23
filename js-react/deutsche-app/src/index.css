@@ -1,0 +1,10 @@
+body {
+  background-color: #1b1c1d;
+}
+.options {
+  margin-bottom: 3em;
+}
+.message {
+  font-size: 1.5em;
+  margin-bottom: 1.5em;
+}

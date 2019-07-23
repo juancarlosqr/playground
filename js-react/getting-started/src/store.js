@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { createLogger } from 'redux-logger'
 import reducer from './reducer'
 
-const create = (initialState) => {
+const create = initialState => {
   console.log('Initial state:', initialState)
   const store = createStore(
     reducer,
