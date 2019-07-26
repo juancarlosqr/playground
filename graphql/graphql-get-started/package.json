@@ -2,7 +2,7 @@
   "name": "graphql-get-started",
   "version": "1.0.0",
   "private": true,
-  "description": "Graphql with Express and React",
+  "description": "GraphQL with Express and React",
   "main": "src/app.js",
   "scripts": {
     "start": "node ./src/app.js",

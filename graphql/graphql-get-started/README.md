@@ -1,4 +1,8 @@
-# Node and Graphql
+# GraphQL with Express and React
+
+![screenshot](screenshot.png)
+
+__source__
 
 https://medium.freecodecamp.org/an-introduction-to-graphql-how-it-works-and-how-to-use-it-91162ecd72d0
 
