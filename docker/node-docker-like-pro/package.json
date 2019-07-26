@@ -1,0 +1,16 @@
+{
+  "name": "node-docker-like-pro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Manage your Node App using Docker Like a Pro",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Ankit Jain",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
