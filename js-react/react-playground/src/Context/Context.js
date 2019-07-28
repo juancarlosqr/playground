@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { Fragment, createContext, useContext } from 'react'
+import Fetch from '../components/Fetch'
 import GoBack from '../components/GoBack'
 import './context.css'
 
@@ -58,32 +59,13 @@ const UsersList = ({ users }) => {
 }
 
 const Context = () => {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
-  useEffect(() => {
-    setTimeout(() => {
-      fetch('https://jsonplaceholder.typicode.com/users')
-        .then(resp => resp.json())
-        .then(json => {
-          log(json)
-          setUsers(json)
-        })
-        .catch(error => {
-          log(error)
-          setError('Something is broken...')
-        })
-        .finally(() => setLoading(false))
-    }, 300)
-  }, [])
+  const url = 'https://jsonplaceholder.typicode.com/users'
   log('rendering')
   return (
-    <div>
+    <Fragment>
       <Header />
-      {loading && <p>Loading...</p>}
-      {!loading && error && <p>{error}</p>}
-      {!loading && !error && <UsersList users={users} />}
-    </div>
+      <Fetch url={url} render={users => <UsersList users={users} />} />
+    </Fragment>
   )
 }
 
