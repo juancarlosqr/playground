@@ -7,7 +7,7 @@
 module.exports = {
   siteMetadata: {
     title: `Pandas Eating`,
-    twitter: "juancarlosqr",
+    twitter: `juancarlosqr`,
   },
   plugins: [
     {

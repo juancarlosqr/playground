@@ -1,5 +1,5 @@
 ---
-title: "Pandas and Bananas"
+title: "Say hello to my little bamboo!"
 date: "2020-04-18"
 ---
 
